@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutes } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(AppRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

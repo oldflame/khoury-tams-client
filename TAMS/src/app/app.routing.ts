@@ -1,5 +1,6 @@
 import { AuthLayoutComponent } from "./layout/auth-layout/auth-layout.component";
 import { Routes } from "@angular/router";
+import { AuthModule } from './modules/auth/auth.module';
 
 export const AppRoutes: Routes = [
   {
@@ -13,7 +14,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: "",
-        loadChildren: "./modules/auth/auth.module#AuthModule"
+        loadChildren: () => AuthModule
       }
     ]
   }
