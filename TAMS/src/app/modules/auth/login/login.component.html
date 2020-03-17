@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="container-fluid mt-5 pt-5">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>Login</h2>
+          <form [formGroup]="loginForm" class="form">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="Username" formControlName="username">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')">
+                Username is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="!loginForm.get('username').hasError('required') && loginForm.get('username').hasError('email')">
+                Username is <strong>invalid.</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Password" formControlName="password" type="password">
+              <mat-icon matSuffix>visibility</mat-icon>
+              <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">
+                Password is <strong>required.</strong></mat-error>
+              <mat-error
+                *ngIf="!loginForm.get('password').hasError('required') && loginForm.get('password').hasError('minlength')">
+                Password must be <strong>atleast 8 characters.</strong></mat-error>
+            </mat-form-field>
+            <div class="col-12 text-center">
+              <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
