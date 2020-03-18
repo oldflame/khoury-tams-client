@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutes } from "./app.routing";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent],
@@ -16,7 +17,8 @@ import { InterceptorService } from './services/interceptor.service';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,11 @@
+.cover {
+  background-image: url(../../../assets/img/auth_bg.svg);
+  background-size: inherit;
+  background-position: top center;
+}
+
+.main-content {
+  margin-top: 70px;
+  padding: 0 5px 15px;
+  min-height: calc(100vh - 123px);
+}
