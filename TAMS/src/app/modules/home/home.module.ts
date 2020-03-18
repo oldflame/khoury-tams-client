@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routing';
 import { MaterialModule } from 'src/app/material.modules';
 import { ListsModule } from '../lists/lists.module';
+import { DialogsModule } from '../dialogs/dialogs.module';
 
 
 
@@ -14,7 +15,8 @@ import { ListsModule } from '../lists/lists.module';
     CommonModule,
     RouterModule.forChild(HomeRoutes),
     MaterialModule,
-    ListsModule
+    ListsModule,
+    DialogsModule
   ]
 })
 export class HomeModule { }

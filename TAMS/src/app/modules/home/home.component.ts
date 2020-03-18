@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course";
 import { Observable } from "rxjs";
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatTabChangeEvent } from "@angular/material/tabs";
+import { MatDialog } from "@angular/material/dialog";
+import { CourseDetailsComponent } from '../dialogs/course-details/course-details.component';
 
 @Component({
   selector: "home",
@@ -11,7 +13,12 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 export class HomeComponent implements OnInit {
   courses$: Observable<Course[]>;
-  constructor(private courseService: CourseService) {}
+  dialogRef;
+
+  constructor(
+    private courseService: CourseService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.courses$ = this.courseService.courses$;
@@ -23,7 +30,17 @@ export class HomeComponent implements OnInit {
   }
 
   tabChanged(eventArgs: MatTabChangeEvent) {
-    console.log("Tab Changed", eventArgs);
-    this.getCoursesByStream((eventArgs.index + 1) + "");
+    this.getCoursesByStream(eventArgs.index + 1 + "");
+  }
+
+  showCourseDetails(eventArgs: any) {
+    console.log("Viewing Details", eventArgs);
+    this.dialogRef = this.dialog.open(CourseDetailsComponent, {
+      width: "600px",
+      closeOnNavigation: true,
+      data : {
+        CRN: eventArgs.CRN
+      }
+    });
   }
 }

@@ -12,6 +12,9 @@ export class CourseService {
   private subject = new BehaviorSubject(null);
   courses$: Observable<Course[]> = this.subject.asObservable();
 
+  private courseDetailsSubject = new BehaviorSubject(null);
+  courseDetails$: Observable<Course> = this.courseDetailsSubject.asObservable();
+
   constructor(private dataService: DataService) {}
 
   getCourseByStream(stream: string): Observable<boolean> {
@@ -19,6 +22,23 @@ export class CourseService {
       map((res: HttpResponse<object>) => {
         if (res.status === 200) {
           this.subject.next(res.body);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  getCourseDetails(CRN: string): Observable<boolean> {
+    return this.dataService.sendGET(`/courses/details/${CRN}`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.courseDetailsSubject.next(res.body);
           return true;
         } else {
           return false;

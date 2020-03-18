@@ -6,7 +6,9 @@ import {
   ViewChild,
   OnChanges,
   SimpleChange,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { Course } from "src/app/models/course";
 import { MatTableDataSource } from "@angular/material/table";
@@ -19,6 +21,8 @@ import { MatPaginator } from "@angular/material/paginator";
 })
 export class CoursesListComponent implements OnInit, AfterViewInit, OnChanges {
   @Input("coursesList") coursesList: Course[];
+  @Output("viewDetails") viewDetails = new EventEmitter();
+
   displayedColumns: string[] = ["Title", "Course", "CRN", "Instructors"];
   dataSource: MatTableDataSource<Course>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -34,7 +38,9 @@ export class CoursesListComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.coursesList && changes.coursesList.currentValue != null) {
-      this.dataSource = new MatTableDataSource(changes.coursesList.currentValue);
+      this.dataSource = new MatTableDataSource(
+        changes.coursesList.currentValue
+      );
       this.dataSource.paginator = this.paginator;
     }
   }
@@ -46,5 +52,9 @@ export class CoursesListComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onCourseRowClicked(CRN: string) {
+    this.viewDetails.emit({ CRN });
   }
 }
