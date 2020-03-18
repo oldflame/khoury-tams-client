@@ -4,9 +4,8 @@ export interface Course {
   stream: string;
   CRN: string;
   Title: string;
-  "Hon/Ac": string;
   Method: string;
-  "Meeting Time": string;
+  "Meeting_Time": string;
   Instructors: string;
   Room: string;
   Size: string;

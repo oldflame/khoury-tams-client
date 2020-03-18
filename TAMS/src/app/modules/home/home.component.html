@@ -5,5 +5,5 @@
     <mat-tab label="Masters in Cyber Security">Masters in Cyber Security</mat-tab>
     <mat-tab label="Masters in Health Informatics">Masters in Health Informatics</mat-tab>
   </mat-tab-group> -->
- {{ courses$ | async | json }}
+  <courses-list [coursesList]="courses$ | async"> </courses-list>
 </div>

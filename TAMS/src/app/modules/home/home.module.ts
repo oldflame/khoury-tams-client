@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routing';
 import { MaterialModule } from 'src/app/material.modules';
+import { ListsModule } from '../lists/lists.module';
 
 
 
@@ -12,7 +13,8 @@ import { MaterialModule } from 'src/app/material.modules';
   imports: [
     CommonModule,
     RouterModule.forChild(HomeRoutes),
-    MaterialModule
+    MaterialModule,
+    ListsModule
   ]
 })
 export class HomeModule { }
