@@ -1,9 +1,29 @@
 <div class="container-fluid">
-  <!-- <mat-tab-group>
-    <mat-tab label="Masters in Computer Science">Masters in Computer Science</mat-tab>
-    <mat-tab label="Masters in Data Science">Masters in Data Science</mat-tab>
-    <mat-tab label="Masters in Cyber Security">Masters in Cyber Security</mat-tab>
-    <mat-tab label="Masters in Health Informatics">Masters in Health Informatics</mat-tab>
-  </mat-tab-group> -->
-  <courses-list [coursesList]="courses$ | async"> </courses-list>
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+      <mat-tab-group (selectedTabChange)="tabChanged($event)">
+        <mat-tab label="Masters in Computer Science">
+          <ng-template matTabContent>
+            <courses-list [coursesList]="courses$ | async"> </courses-list>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Masters in Data Science">
+
+          <ng-template matTabContent>
+            <courses-list [coursesList]="courses$ | async"> </courses-list>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Masters in Cyber Security">
+          <ng-template matTabContent>
+            <courses-list [coursesList]="courses$ | async"> </courses-list>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Masters in Health Informatics">
+          <ng-template matTabContent>
+            <courses-list [coursesList]="courses$ | async"> </courses-list>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
 </div>

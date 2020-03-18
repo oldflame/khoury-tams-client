@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course";
 import { Observable } from "rxjs";
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: "home",
@@ -19,5 +20,10 @@ export class HomeComponent implements OnInit {
 
   getCoursesByStream(stream: string) {
     this.courseService.getCourseByStream(stream).subscribe();
+  }
+
+  tabChanged(eventArgs: MatTabChangeEvent) {
+    console.log("Tab Changed", eventArgs);
+    this.getCoursesByStream((eventArgs.index + 1) + "");
   }
 }
