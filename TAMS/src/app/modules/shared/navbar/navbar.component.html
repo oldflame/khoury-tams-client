@@ -1,18 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-transparent navbar-transparent navbar-absolute" color-on-scroll="500">
   <div class="container">
     <div class="navbar-wrapper">
-      <a class="navbar-brand" routerLink="/login">AppName</a>
+      <a class="navbar-brand text-white" routerLink="/login">TAMS</a>
     </div>
     <div class="justify-content-end">
       <ul class="navbar-nav">
-        <li [hidden]="currentUrl.indexOf('/login') != -1 || currentUrl == '/'" class="nav-item" routerLinkActive="active" routerLink="/login">
-          <a class="nav-link pointer">
-            <i class="material-icons align-baseline">fingerprint</i> <span class="align-top">Login</span>
+        <li [hidden]="currentUrl.indexOf('/login') != -1 || currentUrl == '/'" class="nav-item" routerLinkActive="active">
+          <a class="nav-link pointer" routerLink="/login">
+            <i class="material-icons align-baseline text-white">fingerprint</i> <span class="align-top text-white">Login</span>
           </a>
         </li>
         <li [hidden]="currentUrl.indexOf('/register') != -1" class="nav-item" routerLinkActive="active" routerLink="/register">
           <a class="nav-link pointer">
-            <i class="material-icons align-baseline">person_add</i> <span class="align-top">Register</span>
+            <i class="material-icons align-baseline">person_add</i> <span class="align-top text-white">Register</span>
           </a>
         </li>
       </ul>
