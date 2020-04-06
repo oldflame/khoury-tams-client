@@ -13,11 +13,10 @@ export class DataService {
     });
   }
 
-  sendPOST(url: string, headers?: any, body?: any) {
-    return this.http.post(
-      url,
-      { headers: new HttpHeaders(headers), observe: "response" },
-      body
-    );
+  sendPOST(url: string, body?: any, headers?: any) {
+    return this.http.post(url, body, {
+      headers: new HttpHeaders(headers),
+      observe: "response"
+    });
   }
 }
