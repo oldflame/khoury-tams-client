@@ -7,6 +7,17 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class DataService {
   constructor(private http: HttpClient) {}
   sendGET(url: string, headers?: any) {
-    return this.http.get(url, {headers: new HttpHeaders(headers), observe: 'response'});
+    return this.http.get(url, {
+      headers: new HttpHeaders(headers),
+      observe: "response"
+    });
+  }
+
+  sendPOST(url: string, headers?: any, body?: any) {
+    return this.http.post(
+      url,
+      { headers: new HttpHeaders(headers), observe: "response" },
+      body
+    );
   }
 }
