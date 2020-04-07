@@ -7,13 +7,13 @@
           <form [formGroup]="loginForm" class="form">
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Username</mat-label>
-              <input matInput placeholder="Username" formControlName="username">
+              <input matInput placeholder="Username" formControlName="email">
               <mat-icon matSuffix>person</mat-icon>
-              <mat-error *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')">
+              <mat-error *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('required')">
                 Username is <strong>required.</strong>
               </mat-error>
               <mat-error
-                *ngIf="!loginForm.get('username').hasError('required') && loginForm.get('username').hasError('email')">
+                *ngIf="!loginForm.get('email').hasError('required') && loginForm.get('email').hasError('email')">
                 Username is <strong>invalid.</strong>
               </mat-error>
             </mat-form-field>
@@ -28,7 +28,7 @@
                 Password must be <strong>atleast 8 characters.</strong></mat-error>
             </mat-form-field>
             <div class="col-12 text-center">
-              <button mat-raised-button color="primary" [disabled]="loginForm.invalid" routerLink="/account/home">Login</button>
+              <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)='onLogin()'>Login</button>
             </div>
           </form>
         </div>

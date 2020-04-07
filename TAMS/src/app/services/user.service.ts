@@ -29,4 +29,20 @@ export class UserService {
       })
     );
   }
+
+  loginUser(user: User) {
+    return this.dataService.sendPOST(`/login`, user).pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
 }
