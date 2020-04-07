@@ -3,6 +3,7 @@ import { Routes } from "@angular/router";
 import { AuthModule } from './modules/auth/auth.module';
 import { HomeModule } from './modules/home/home.module';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { AssignCourseComponent } from './assign-course/assign-course.component';
 
 export const AppRoutes: Routes = [
   {
@@ -29,5 +30,9 @@ export const AppRoutes: Routes = [
         loadChildren: () => AuthModule
       }
     ]
+  },
+  {
+    path: "assignCourse",
+    component: AssignCourseComponent
   }
 ];

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { MaterialModule } from 'src/app/material.modules';
 
-
-
 @NgModule({
   declarations: [CoursesListComponent],
   imports: [

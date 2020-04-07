@@ -10,15 +10,22 @@ import { AppRoutes } from "./app.routing";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { SharedModule } from './modules/shared/shared.module';
+import { ProfessorCourseList } from './professor-course-list/professor-course-list.component';
+import { AssignCourseComponent } from './assign-course/assign-course.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent],
+  declarations: [AppComponent, AuthLayoutComponent,
+   AdminLayoutComponent, ProfessorCourseList, AssignCourseComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    MatTabsModule,
+    MatTableModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

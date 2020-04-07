@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                <mat-tab label="Masters in Computer Science">
+                    <ng-template matTabContent>
+                        <professor-course-list [coursesList]="courses$ | async"
+                            (viewDetails)="showCourseDetails($event)"> </professor-course-list>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Masters in Data Science">
+                    <ng-template matTabContent>
+                        <professor-course-list [coursesList]="courses$ | async"
+                            (viewDetails)="showCourseDetails($event)"> </professor-course-list>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Masters in Cyber Security">
+                    <ng-template matTabContent>
+                        <professor-course-list [coursesList]="courses$ | async"
+                            (viewDetails)="showCourseDetails($event)"> </professor-course-list>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Masters in Health Informatics">
+                    <ng-template matTabContent>
+                        <professor-course-list [coursesList]="courses$ | async"
+                            (viewDetails)="showCourseDetails($event)"> </professor-course-list>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

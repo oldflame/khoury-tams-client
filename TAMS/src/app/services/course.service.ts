@@ -50,4 +50,10 @@ export class CourseService {
       })
     );
   }
+
+  
+  // getAllProfessors = () =>
+  //     fetch(`http://localhost:7000/courses`)
+  //       .then(response => response.json())
+  
 }
