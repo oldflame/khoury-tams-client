@@ -1,7 +1,8 @@
 <div class="container-fluid">
 
   <mat-tab-group>
-    <mat-tab *ngFor="let week of weeks; index as weekIndex" [label]="week[0].format('MM/DD/YYYY')" [disabled]="moment(week[0]).startOf('day').unix() > moment().unix()">
+    <mat-tab *ngFor="let week of weeks; index as weekIndex" [label]="week[0].format('MM/DD/YYYY')"
+      [disabled]="moment(week[0]).startOf('day').unix() > moment().unix()">
       <div class="row mx-0">
         <div *ngFor="let day of week; index as dayIndex" class="col-12 col-md-4 col-lg-3 col-sm-6">
           <div class="card m-2">
@@ -11,7 +12,8 @@
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Hours</mat-label>
                   <input matInput formControlName="hours">
-                  <mat-error *ngIf="hourForms[(weekIndex * 7) + dayIndex].get('hours').touched && hourForms[(weekIndex * 7) + dayIndex].get('hours').hasError('required')">
+                  <mat-error
+                    *ngIf="hourForms[(weekIndex * 7) + dayIndex].get('hours').touched && hourForms[(weekIndex * 7) + dayIndex].get('hours').hasError('required')">
                     Number of hours is <strong>required.</strong>
                   </mat-error>
                 </mat-form-field>
@@ -24,11 +26,24 @@
                     Activity is <strong>required.</strong>
                   </mat-error>
                 </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="hourForms[(weekIndex * 7) + dayIndex].invalid || hourForms[(weekIndex * 7) + dayIndex].disabled" >Submit</button>
               </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-12 col-md-4 col-lg-3 col-sm-6">
+          <div class="card m-2">
+            <div class="card-body text-center">
+              <p> Hit Confirm to confirm all of this week's hours for CS 5500. Once you do so, you will no longer be
+                able to edit hours or add more hours for this week. You must submit and confirm your hours by Monday
+                 of the following week of your timezone or order to be paid on time.</p>
+                <button mat-raised-button color="primary">Confirm</button>
             </div>
           </div>
         </div>
       </div>
     </mat-tab>
   </mat-tab-group>
+
 </div>
