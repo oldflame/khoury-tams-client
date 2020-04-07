@@ -1,14 +1,14 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpResponse,
   HttpErrorResponse
 } from "@angular/common/http";
-import {DataService} from "./data.service";
-import {User} from "../models/user";
-import {map, catchError} from "rxjs/operators";
-import {of, BehaviorSubject, Observable} from "rxjs";
-import {SecureStorageService} from "./secure-storage.service";
+import { DataService } from "./data.service";
+import { User } from "../models/user";
+import { map, catchError } from "rxjs/operators";
+import { of, BehaviorSubject, Observable } from "rxjs";
+import { SecureStorageService } from "./secure-storage.service";
 
 @Injectable({
   providedIn: "root"
@@ -18,8 +18,7 @@ export class UserService {
     private http: HttpClient,
     private dataService: DataService,
     private secureStorageService: SecureStorageService
-  ) {
-  }
+  ) {}
 
   private userSubject = new BehaviorSubject(null);
   user$: Observable<User> = this.userSubject.asObservable();
@@ -69,8 +68,8 @@ export class UserService {
     return this.secureStorageService.getValue("token") !== "";
   }
 
-  getUserData(): User {
-    const user: User = this.secureStorageService.getValue("user");
+  getUserData() {
+    const user = this.secureStorageService.getValue("user");
     return user;
   }
 }

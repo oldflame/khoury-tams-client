@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Route} from "@angular/router";
+import { Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -10,13 +10,14 @@ import {UserService} from "../../services/user.service";
 export class ApplicationsComponent implements OnInit {
 
   constructor(private service: UserService,
-              public router: Route) {
+              public router: Router) {
   }
 
   userName: string;
 
   ngOnInit(): void {
-    this.userName = this.service.getUserData().FirstName;
+    this.userName = JSON.parse(this.service.getUserData()).firstName;
+    console.log(this.userName);
   }
 
 }
