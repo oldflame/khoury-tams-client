@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card ">
+    <div class="card-body">
+      <h5> Date </h5>
+      <div *ngFor='let week of weeks'>
+        <p *ngFor='let day of week'>
+          {{day.format("DD MMM YYYY")}}
+        </p>
+      </div>
+      <form [formGroup]="hourForm" class="form">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Hours</mat-label>
+          <input matInput formControlName="hours">
+          <mat-error *ngIf="hourForm.get('hours').touched && hourForm.get('hours').hasError('required')">
+            Number of hours is <strong>required.</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Activity</mat-label>
+          <input matInput formControlName="activities">
+          <mat-error *ngIf="hourForm.get('activities').touched && hourForm.get('activities').hasError('required')">
+            Activity is <strong>required.</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+      </form>
+    </div>
+  </div>
+  </div>
