@@ -68,8 +68,8 @@ export class UserService {
     return this.secureStorageService.getValue("token") !== "";
   }
 
-  getUserData(): User {
-    const user: User = this.secureStorageService.getValue("user");
+  getUserData() {
+    const user = this.secureStorageService.getValue("user");
     return user;
   }
 }
