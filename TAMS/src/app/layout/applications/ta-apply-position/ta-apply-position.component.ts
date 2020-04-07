@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomCourseService} from "../services/course.service";
+import {CustomCourseService} from "../../../services/course.service";
 
 @Component({
   selector: 'ta-apply-position',

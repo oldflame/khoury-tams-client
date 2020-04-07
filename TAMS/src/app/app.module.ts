@@ -10,9 +10,9 @@ import {AppRoutes} from "./app.routing";
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {InterceptorService} from './services/interceptor.service';
 import {SharedModule} from './modules/shared/shared.module';
-import {ApplicationsComponent} from './applications/applications.component';
-import {TaAcceptPositionComponent} from './ta-accept-position/ta-accept-position.component';
-import {TaApplyPositionComponent} from './ta-apply-position/ta-apply-position.component';
+import {ApplicationsComponent} from './layout/applications/applications.component';
+import {TaAcceptPositionComponent} from './layout/applications/ta-accept-position/ta-accept-position.component';
+import {TaApplyPositionComponent} from './layout/applications/ta-apply-position/ta-apply-position.component';
 import {MatCardModule} from "@angular/material/card";
 import {CustomCourseService} from "./services/course.service";
 

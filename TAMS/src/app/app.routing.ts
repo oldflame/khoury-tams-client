@@ -3,7 +3,7 @@ import {Routes} from "@angular/router";
 import {AuthModule} from './modules/auth/auth.module';
 import {HomeModule} from './modules/home/home.module';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
-import {ApplicationsComponent} from "./applications/applications.component";
+import {ApplicationsComponent} from "./layout/applications/applications.component";
 
 export const AppRoutes: Routes = [
   {
