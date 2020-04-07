@@ -3,6 +3,7 @@ import { Routes } from "@angular/router";
 import { AuthModule } from './modules/auth/auth.module';
 import { HomeModule } from './modules/home/home.module';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 export const AppRoutes: Routes = [
   {
@@ -16,7 +17,8 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: "home",
-        loadChildren: () => HomeModule
+        loadChildren: () => HomeModule,
+        canActivate: [AuthGuardService]
       }
     ]
   },

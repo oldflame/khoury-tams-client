@@ -57,4 +57,19 @@ export class UserService {
       })
     );
   }
+
+  signout() {
+    this.userSubject.next(null);
+    this.secureStorageService.clearStorage();
+  }
+
+  isAuthenticated(): boolean {
+    console.log("is auth", this.secureStorageService.getValue("token"));
+    return this.secureStorageService.getValue("token") !== "";
+  }
+
+  getUserData(): User {
+    const user: User = this.secureStorageService.getValue("user");
+    return user;
+  }
 }
