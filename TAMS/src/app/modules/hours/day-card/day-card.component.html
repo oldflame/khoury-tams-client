@@ -1,29 +1,28 @@
 <div class="container-fluid">
 
   <mat-tab-group>
-    <mat-tab *ngFor='let week of weeks' [label]="week[0].format('DD/MM/YYYY')">
+    <mat-tab *ngFor="let week of weeks; index as weekIndex" [label]="week[0].format('MM/DD/YYYY')" [disabled]="moment(week[0]).startOf('day').unix() > moment().unix()">
       <div class="row mx-0">
-        <div *ngFor='let day of week' class="col-12 col-md-4 col-lg-3 col-sm-6">
+        <div *ngFor="let day of week; index as dayIndex" class="col-12 col-md-4 col-lg-3 col-sm-6">
           <div class="card m-2">
             <div class="card-body">
-              <form [formGroup]="hourForm" class="form">
-                <p> Day: {{day | amDateFormat:"DD MMM YYYY"}}</p>
+              <form [formGroup]="hourForms[(weekIndex * 7) + dayIndex]" class="form">
+                <p> {{day | amDateFormat: "dddd"}}: {{day | amDateFormat:"DD MMM YYYY"}}</p>
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Hours</mat-label>
                   <input matInput formControlName="hours">
-                  <mat-error *ngIf="hourForm.get('hours').touched && hourForm.get('hours').hasError('required')">
+                  <mat-error *ngIf="hourForms[(weekIndex * 7) + dayIndex].get('hours').touched && hourForms[(weekIndex * 7) + dayIndex].get('hours').hasError('required')">
                     Number of hours is <strong>required.</strong>
                   </mat-error>
                 </mat-form-field>
-
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Activity</mat-label>
                   <textarea matInput formControlName="activities">
-                    <mat-error
-                      *ngIf="hourForm.get('activities').touched && hourForm.get('activities').hasError('required')">
-                      Activity is <strong>required.</strong>
-                    </mat-error>
-                    </textarea>
+                  </textarea>
+                  <mat-error
+                    *ngIf="hourForms[(weekIndex * 7) + dayIndex].get('activities').touched && hourForms[(weekIndex * 7) + dayIndex].get('activities').hasError('required')">
+                    Activity is <strong>required.</strong>
+                  </mat-error>
                 </mat-form-field>
               </form>
             </div>
