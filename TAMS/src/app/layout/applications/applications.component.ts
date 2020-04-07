@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Route, Router} from "@angular/router";
+import {Route} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'applications',
@@ -8,10 +9,14 @@ import {Route, Router} from "@angular/router";
 })
 export class ApplicationsComponent implements OnInit {
 
-  constructor(public router: Router) {
+  constructor(private service: UserService,
+              public router: Route) {
   }
 
+  userName: string;
+
   ngOnInit(): void {
+    this.userName = this.service.getUserData().FirstName;
   }
 
 }
