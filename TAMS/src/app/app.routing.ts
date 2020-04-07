@@ -1,8 +1,9 @@
-import { AuthLayoutComponent } from "./layout/auth-layout/auth-layout.component";
-import { Routes } from "@angular/router";
-import { AuthModule } from './modules/auth/auth.module';
-import { HomeModule } from './modules/home/home.module';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
+import {Routes} from "@angular/router";
+import {AuthModule} from './modules/auth/auth.module';
+import {HomeModule} from './modules/home/home.module';
+import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
+import {ApplicationsComponent} from "./applications/applications.component";
 
 export const AppRoutes: Routes = [
   {
@@ -29,5 +30,17 @@ export const AppRoutes: Routes = [
         loadChildren: () => AuthModule
       }
     ]
+  },
+  {
+    path: "application",
+    component: ApplicationsComponent
+  },
+  {
+    path: "application/apply",
+    component: ApplicationsComponent
+  },
+  {
+    path: "application/accept",
+    component: ApplicationsComponent
   }
 ];

@@ -1,0 +1,28 @@
+.wbdv-push-down {
+  padding-top: 2%;
+  margin-top: 20px;
+}
+
+.wbdv-push-down-forgot {
+  padding-top: 2%;
+}
+
+.wbdv-center-login {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.wbdv-box {
+  border-radius: 4px;
+  border: 2px solid grey;
+  margin-top: 20px;
+  padding: 10px 10px 10px 10px;
+}
+
+.wbdv-verify-pwd-styling {
+  padding-right: -2px;
+}
+
+.add-padding{
+  margin-left: 20px;
+}
