@@ -8,12 +8,17 @@ import { DataService } from "./data.service";
 import { User } from "../models/user";
 import { map, catchError } from "rxjs/operators";
 import { of, BehaviorSubject, Observable } from "rxjs";
+import { SecureStorageService } from "./secure-storage.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient, private dataService: DataService) {}
+  constructor(
+    private http: HttpClient,
+    private dataService: DataService,
+    private secureStorageService: SecureStorageService
+  ) {}
 
   private userSubject = new BehaviorSubject(null);
   user$: Observable<User> = this.userSubject.asObservable();
@@ -39,8 +44,8 @@ export class UserService {
       map((res: HttpResponse<any>) => {
         if (res.status === 200) {
           this.userSubject.next(res.body);
-          localStorage.setItem("user", JSON.stringify(res.body));
-          localStorage.setItem("token", res.body.authToken);
+          this.secureStorageService.setValue("user", JSON.stringify(res.body));
+          this.secureStorageService.setValue("token", res.body.authToken);
           return true;
         } else {
           return false;
