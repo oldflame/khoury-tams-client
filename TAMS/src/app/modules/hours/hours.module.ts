@@ -8,7 +8,7 @@ import { DialogsModule } from '../dialogs/dialogs.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DayCardComponent } from './day-card/day-card.component';
 import { FillHoursComponent } from './fill-hours/fill-hours.component';
-
+import { MomentModule } from 'ngx-moment';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { FillHoursComponent } from './fill-hours/fill-hours.component';
     ListsModule,
     DialogsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MomentModule
   ]
 })
 export class HoursModule { }

@@ -1,31 +1,35 @@
-<div class="container">
-  <div class="card ">
-    <div class="card-body">
-      <h5> Date </h5>
-      <div *ngFor='let week of weeks'>
-        <p *ngFor='let day of week'>
-          {{day.format("DD MMM YYYY")}}
-        </p>
+<div class="container-fluid">
+
+  <mat-tab-group>
+    <mat-tab *ngFor='let week of weeks' [label]="week[0].format('DD/MM/YYYY')">
+      <div class="row mx-0">
+        <div *ngFor='let day of week' class="col-12 col-md-4 col-lg-3 col-sm-6">
+          <div class="card m-2">
+            <div class="card-body">
+              <form [formGroup]="hourForm" class="form">
+                <p> Day: {{day | amDateFormat:"DD MMM YYYY"}}</p>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Hours</mat-label>
+                  <input matInput formControlName="hours">
+                  <mat-error *ngIf="hourForm.get('hours').touched && hourForm.get('hours').hasError('required')">
+                    Number of hours is <strong>required.</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Activity</mat-label>
+                  <textarea matInput formControlName="activities">
+                    <mat-error
+                      *ngIf="hourForm.get('activities').touched && hourForm.get('activities').hasError('required')">
+                      Activity is <strong>required.</strong>
+                    </mat-error>
+                    </textarea>
+                </mat-form-field>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <form [formGroup]="hourForm" class="form">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Hours</mat-label>
-          <input matInput formControlName="hours">
-          <mat-error *ngIf="hourForm.get('hours').touched && hourForm.get('hours').hasError('required')">
-            Number of hours is <strong>required.</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Activity</mat-label>
-          <input matInput formControlName="activities">
-          <mat-error *ngIf="hourForm.get('activities').touched && hourForm.get('activities').hasError('required')">
-            Activity is <strong>required.</strong>
-          </mat-error>
-        </mat-form-field>
-
-
-      </form>
-    </div>
-  </div>
-  </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

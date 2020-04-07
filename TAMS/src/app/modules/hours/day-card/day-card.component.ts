@@ -29,10 +29,12 @@ export class DayCardComponent implements OnInit {
     const weeks = [];
     let weekStart = moment(startDate);
     let weekEnd = moment(weekStart).endOf("week");
-    while (weekStart.unix() < endDate.unix()) {
+    while (weekStart.unix() <= endDate.unix()) {
       let days: Moment[] = [];
-      let day: Moment = weekStart;
+      let day: Moment = weekStart.clone();
+      console.log("WEEK START", weekStart);
       while (day.unix() <= weekEnd.unix()) {
+        console.log("LATEST PRINT ", day);
         days.push(day);
         day = moment(weekStart.add(1, "day"));
       }
