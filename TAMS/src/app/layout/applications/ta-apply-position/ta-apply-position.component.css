@@ -26,3 +26,7 @@
 .add-padding{
   margin-left: 20px;
 }
+
+.textarea{
+  resize: vertical;
+}

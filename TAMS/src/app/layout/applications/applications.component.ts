@@ -13,11 +13,11 @@ export class ApplicationsComponent implements OnInit {
               public router: Router) {
   }
 
-  userName: string;
-
+  firstName: string;
+  lastName: string;
   ngOnInit(): void {
-    this.userName = JSON.parse(this.service.getUserData()).firstName;
-    console.log(this.userName);
+    this.firstName = JSON.parse(this.service.getUserData()).firstName;
+    this.lastName = JSON.parse(this.service.getUserData()).lastName;
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="wbdv-box">
+<div class="wbdv-box my-4">
   <form>
     <div>
       <h3 class="text-center">Basic Information</h3>
@@ -42,12 +42,7 @@
         TAing. Students who are on co-op cannot simultaneously hold a position within the
         College.</p>
     </div>
-  </form>
-</div>
-
-<div class="wbdv-box">
-  <form>
-    <h3 class="text-center">Application 1</h3>
+    <h3 class="text-center">TA Application</h3>
     <div class="form-group">
       <label for="select-course">Course: </label>
       <select class="form-control" id="select-course">
@@ -61,58 +56,63 @@
       <input class="form-control" id="grade" type="textarea"/>
       <p>If you have taken this class, select the grade you received.</p>
     </div>
+    <div class="form-group">
+      <label for="notes">Notes: </label>
+      <textarea class="form-control" id="notes"></textarea>
+      <p>Please enter any additional notes about this application.</p>
+    </div>
     <div class="text-center">
-      <button class="btn btn-primary">
+      <button class="btn btn-success">
         Save Application
       </button>
     </div>
   </form>
 </div>
 
-<div class="wbdv-box">
-  <form>
-    <h3 class="text-center">Application 2</h3>
-    <div class="form-group">
-      <label for="select-course-2">Course: </label>
-      <select class="form-control" id="select-course-2">
-        <option *ngFor="let course of courses" value="undergraduate">
-          {{course.Course}} {{course.Title}}
-        </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="grade-2">Grade: </label>
-      <input class="form-control" id="grade-2" type="textarea"/>
-      <p>If you have taken this class, select the grade you received.</p>
-    </div>
-    <div class="text-center">
-      <button class="btn btn-primary">
-        Save Application
-      </button>
-    </div>
-  </form>
-</div>
+<!--<div class="wbdv-box">-->
+<!--  <form>-->
+<!--    <h3 class="text-center">Application 2</h3>-->
+<!--    <div class="form-group">-->
+<!--      <label for="select-course-2">Course: </label>-->
+<!--      <select class="form-control" id="select-course-2">-->
+<!--        <option *ngFor="let course of courses" value="undergraduate">-->
+<!--          {{course.Course}} {{course.Title}}-->
+<!--        </option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="grade-2">Grade: </label>-->
+<!--      <input class="form-control" id="grade-2" type="textarea"/>-->
+<!--      <p>If you have taken this class, select the grade you received.</p>-->
+<!--    </div>-->
+<!--    <div class="text-center">-->
+<!--      <button class="btn btn-success">-->
+<!--        Save Application-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
 
-<div class="wbdv-box my-4">
-  <form>
-    <h3 class="text-center">Application 3</h3>
-    <div class="form-group">
-      <label for="select-course-3">Course: </label>
-      <select class="form-control" id="select-course-3">
-        <option *ngFor="let course of courses" value="undergraduate">
-          {{course.Course}} {{course.Title}}
-        </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="grade-3">Grade: </label>
-      <input class="form-control" id="grade-3" type="textarea"/>
-      <p>If you have taken this class, select the grade you received.</p>
-    </div>
-    <div class="text-center">
-      <button class="btn btn-primary">
-        Save Application
-      </button>
-    </div>
-  </form>
-</div>
+<!--<div class="wbdv-box my-4">-->
+<!--  <form>-->
+<!--    <h3 class="text-center">Application 3</h3>-->
+<!--    <div class="form-group">-->
+<!--      <label for="select-course-3">Course: </label>-->
+<!--      <select class="form-control" id="select-course-3">-->
+<!--        <option *ngFor="let course of courses" value="undergraduate">-->
+<!--          {{course.Course}} {{course.Title}}-->
+<!--        </option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="grade-3">Grade: </label>-->
+<!--      <input class="form-control" id="grade-3" type="textarea"/>-->
+<!--      <p>If you have taken this class, select the grade you received.</p>-->
+<!--    </div>-->
+<!--    <div class="text-center">-->
+<!--      <button class="btn btn-success">-->
+<!--        Save Application-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
