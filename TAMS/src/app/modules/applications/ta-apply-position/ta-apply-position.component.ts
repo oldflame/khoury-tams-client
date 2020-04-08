@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomCourseService} from "../../../services/course.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
+import {ApplicationService} from "../../../services/application.service";
 
 @Component({
   selector: 'ta-apply-position',
@@ -19,7 +20,8 @@ export class TaApplyPositionComponent implements OnInit {
   });
 
   constructor(private service: CustomCourseService,
-              private userService: UserService) {
+              private userService: UserService,
+              private applicationService: ApplicationService) {
   }
 
   courses: [];
@@ -34,6 +36,16 @@ export class TaApplyPositionComponent implements OnInit {
     this.firstName = JSON.parse(this.userService.getUserData()).firstName;
     this.lastName = JSON.parse(this.userService.getUserData()).lastName;
     this.email = JSON.parse(this.userService.getUserData()).email;
+    // this.submitApplication();
+  }
+
+  submitApplication() {
+    const applicationFormString = JSON.stringify(this.applicationForm.value);
+    const applicationFormJSON = JSON.parse(applicationFormString);
+    applicationFormJSON.firstName = this.firstName;
+    applicationFormJSON.lastName = this.lastName;
+    applicationFormJSON.email = this.email;
+    console.log(applicationFormJSON);
   }
 
 }

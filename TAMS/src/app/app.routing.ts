@@ -3,7 +3,7 @@ import {Routes} from "@angular/router";
 import {AuthModule} from './modules/auth/auth.module';
 import {HomeModule} from './modules/home/home.module';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
-import {ApplicationsComponent} from "./layout/applications/applications.component";
+import {ApplicationsComponent} from "./modules/applications/applications.component";
 import { AuthGuardService } from './services/auth-guard.service';
 
 export const AppRoutes: Routes = [
