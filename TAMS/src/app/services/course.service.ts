@@ -73,26 +73,29 @@ export class CourseService {
     );
   }
 
-  getCourseById(id: string): Observable<boolean> {
-    return this.dataService.sendGET(`/courses/${id}`).pipe(
-      map((res: HttpResponse<object>) => {
-        if (res.status === 200) {
-          this.subject.next(res.body);
-          return true;
-        } else {
-          return false;
-        }
-      }),
-      catchError((err: HttpErrorResponse) => {
-        console.log(err);
-        return of(false);
-      })
-    );
-  }
+  getCourseById = (id: string) =>
+    fetch(`http://localhost:7000/course/${id}`)
+      .then(response => response.json())
+  // {
+  //   return this.dataService.sendGET(`/course/${id}`).pipe(
+  //     map((res: HttpResponse<object>) => {
+  //       if (res.status === 200) {
+  //         this.subject.next(res.body);
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     }),
+  //     catchError((err: HttpErrorResponse) => {
+  //       console.log(err);
+  //       return of(false);
+  //     })
+  //   );
+  // }
 
 
   updateCourse(course: Course) {
-    return this.dataService.sendPOST(`/updateCourse`, course).pipe(
+    return this.dataService.sendPUT(`/updateCourse`, course).pipe(
       map((res: HttpResponse<any>) => {
         if (res.status === 200) {
           return true;

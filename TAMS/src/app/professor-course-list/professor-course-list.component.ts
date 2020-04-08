@@ -19,9 +19,9 @@ export class ProfessorCourseList implements OnInit, AfterViewInit, OnChanges {
   dataSource: MatTableDataSource<Course>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  instructors = ["guneet", "tanveer", "anirudh"];
+  instructors = [];
   editing = false;
-  profSelected = new Object();
+  profSelected : any;
 
   constructor(private service: CourseService) {}
 
@@ -30,8 +30,6 @@ export class ProfessorCourseList implements OnInit, AfterViewInit, OnChanges {
       .getAllProfessors()
       .then(instructors => {
         this.instructors = instructors;
-        console.log(this.instructors);
-
       });
   }
 
@@ -52,31 +50,25 @@ export class ProfessorCourseList implements OnInit, AfterViewInit, OnChanges {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
   editClicked(element) {
-    console.log("Hello, edit is clicked!");
     element.Instructors = '';
-
     console.log(element)
   }
 
   saveClicked() {
     this.editing = false;
-
-    this.service.updateCourse
-
-    console.log(this.profSelected);
-    this.profSelected = '';
-    console.log("Save was clicked!");
-  }
-
-  instructorChanged(value) {
-    // this.profSelected = value;
-    // console.log(value);
+    this.service.getCourseById(this.profSelected._id)
+    .then(course => {
+      console.log(this.profSelected);
+      course[0].Instructors = this.profSelected.Instructors;
+      this.service.updateCourse(course[0]);
+      console.log("Updated course is : ", course[0]);
+      this.profSelected = '';
+    });
   }
 }
