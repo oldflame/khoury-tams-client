@@ -29,8 +29,8 @@ export class FillHoursService {
     );
   }
 
+
   getAllHoursData(taId: string) {
-    console.log("IIn Service", taId);
     return this.dataService.sendGET(`/getHours/${taId}`).pipe(
       map((res: HttpResponse<object>) => {
         if (res.status === 200) {
