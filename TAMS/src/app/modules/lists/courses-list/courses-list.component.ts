@@ -19,7 +19,7 @@ import { MatPaginator } from "@angular/material/paginator";
   templateUrl: "./courses-list.component.html",
   styleUrls: ["./courses-list.component.css"]
 })
-export class CoursesListComponent implements OnInit, AfterViewInit, OnChanges {
+export class CoursesListComponent implements OnInit, OnChanges {
   @Input("coursesList") coursesList: Course[];
   @Output("viewDetails") viewDetails = new EventEmitter();
 
@@ -29,9 +29,7 @@ export class CoursesListComponent implements OnInit, AfterViewInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit() {
+  ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.coursesList);
     this.dataSource.paginator = this.paginator;
   }
