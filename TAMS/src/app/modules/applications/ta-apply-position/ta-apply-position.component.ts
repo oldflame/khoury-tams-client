@@ -45,6 +45,7 @@ export class TaApplyPositionComponent implements OnInit {
     applicationFormJSON.firstName = this.firstName;
     applicationFormJSON.lastName = this.lastName;
     applicationFormJSON.email = this.email;
+    this.applicationService.sendApplication(applicationFormJSON);
     console.log(applicationFormJSON);
   }
 
