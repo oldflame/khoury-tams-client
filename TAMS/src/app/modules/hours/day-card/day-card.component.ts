@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { Moment } from "moment";
+import { UserService } from "src/app/services/user.service";
+import { FillHoursService } from "src/app/services/fill-hours.service";
 
 @Component({
   selector: "day-card",
@@ -9,7 +11,10 @@ import { Moment } from "moment";
   styleUrls: ["./day-card.component.css"],
 })
 export class DayCardComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private userService: UserService,
+    private fillHours: FillHoursService
+  ) {}
   months;
   weeks;
   hourForms: FormGroup[] = [];
@@ -31,9 +36,7 @@ export class DayCardComponent implements OnInit {
     while (weekStart.unix() <= endDate.unix()) {
       let days: Moment[] = [];
       let day: Moment = weekStart.clone();
-      console.log("WEEK START", weekStart);
       while (day.unix() <= weekEnd.unix()) {
-        console.log("LATEST PRINT ", day);
         days.push(day);
         this.hourForms.push(
           new FormGroup({
@@ -43,7 +46,7 @@ export class DayCardComponent implements OnInit {
           })
         );
 
-        if (day > moment().add(1, 'day')) {
+        if (day > moment().add(1, "day")) {
           this.hourForms[this.hourForms.length - 1].disable();
         }
         day = moment(weekStart.add(1, "day"));
@@ -54,7 +57,12 @@ export class DayCardComponent implements OnInit {
       weekStart = moment(weekEnd).add(1, "day");
       weekEnd = moment(weekStart).endOf("week");
     }
-    console.log(weeks, this.hourForms);
     return weeks;
+  }
+
+  createTaHoursObject(hourForm: any) {
+    const taId = JSON.parse(this.userService.getUserData())._id;
+    hourForm.taId = taId;
+    this.fillHours.sendWeeklyHours(hourForm);
   }
 }

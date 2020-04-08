@@ -1,7 +1,7 @@
 import { Moment } from "moment";
 
 export interface TaHours {
-  email: string;
+  taID: string;
   date: Moment;
   hours: number;
   notes: string;
