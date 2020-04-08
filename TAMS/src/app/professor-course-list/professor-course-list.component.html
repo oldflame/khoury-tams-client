@@ -38,7 +38,7 @@
         <select [(ngModel)]="profSelected">
           <option *ngFor="let inst of instructors" [ngValue]="inst">{{inst.Instructors}}</option>
         </select>
-        <i class="fa fa-check" (click)="saveClicked(inst)"></i>
+        <i class="fa fa-check" (click)="saveClicked()"></i>
       </span> </td>
 
   </ng-container>

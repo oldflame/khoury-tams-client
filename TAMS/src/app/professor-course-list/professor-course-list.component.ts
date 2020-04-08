@@ -65,9 +65,9 @@ export class ProfessorCourseList implements OnInit, AfterViewInit, OnChanges {
     console.log(element)
   }
 
-  saveClicked(value) {
+  saveClicked() {
     this.editing = false;
-    
+
     this.service.updateCourse
 
     console.log(this.profSelected);

@@ -19,11 +19,4 @@ export class DataService {
       observe: "response"
     });
   }
-
-  sendPOST(url: string, body?: any, headers?: any) {
-    return this.http.post(url, body, {
-      headers: new HttpHeaders(headers),
-      observe: "response"
-    });
-  }
 }
