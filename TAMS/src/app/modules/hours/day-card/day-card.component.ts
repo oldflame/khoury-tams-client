@@ -89,12 +89,17 @@ export class DayCardComponent implements OnInit {
             this.hourForms,
             (form: FormGroup) => form.value.day == hour.day
           );
-          console.log(this.hourForms, formToUpdate);
           formToUpdate.get("hours").patchValue(hour.hours);
           formToUpdate.get("activities").patchValue(hour.activities);
           formToUpdate.disable();
         });
       }
     });
+  }
+
+  confirmAllHours(event: any) {
+    console.log("ALERT", event);
+    event.target.disabled = true;
+    alert("You have confirmed the hours for this week.");
   }
 }

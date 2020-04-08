@@ -40,12 +40,11 @@
               <p> Hit Confirm to confirm all of this week's hours for CS 5500. Once you do so, you will no longer be
                 able to edit hours or add more hours for this week. You must submit and confirm your hours by Monday
                 of the following week of your timezone or order to be paid on time.</p>
-              <button mat-raised-button color="primary">Confirm</button>
+              <button mat-raised-button color="primary" (click)="confirmAllHours($event); confirmbutton.disabled = true" #confirmbutton> Confirm</button>
             </div>
           </div>
         </div>
       </div>
     </mat-tab>
   </mat-tab-group>
-  {{hours$ |async | json}}
 </div>
