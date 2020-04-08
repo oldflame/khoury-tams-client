@@ -28,7 +28,7 @@
                 </mat-form-field>
                 <button mat-raised-button color="primary"
                   [disabled]="hourForms[(weekIndex * 7) + dayIndex].invalid || hourForms[(weekIndex * 7) + dayIndex].disabled"
-                  (click)='createTaHoursObject(hourForms[(weekIndex * 7) + dayIndex].value)'>Submit</button>
+                  (click)='submitTaHours(hourForms[(weekIndex * 7) + dayIndex].value)'>Submit</button>
               </form>
             </div>
           </div>

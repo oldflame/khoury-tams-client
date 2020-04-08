@@ -60,9 +60,9 @@ export class DayCardComponent implements OnInit {
     return weeks;
   }
 
-  createTaHoursObject(hourForm: any) {
+  submitTaHours(hourForm: any) {
     const taId = JSON.parse(this.userService.getUserData())._id;
     hourForm.taId = taId;
-    this.fillHours.sendWeeklyHours(hourForm);
+    this.fillHours.sendWeeklyHours(hourForm).subscribe();
   }
 }
