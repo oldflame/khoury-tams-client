@@ -15,6 +15,9 @@ import {TaAcceptPositionComponent} from './layout/applications/ta-accept-positio
 import {TaApplyPositionComponent} from './layout/applications/ta-apply-position/ta-apply-position.component';
 import {MatCardModule} from "@angular/material/card";
 import {CustomCourseService} from "./services/course.service";
+import {ApplicationService} from "./services/application.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent,
@@ -25,13 +28,17 @@ import {CustomCourseService} from "./services/course.service";
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
     SharedModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonToggleModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true},
-    CustomCourseService],
+    CustomCourseService,
+    ApplicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
