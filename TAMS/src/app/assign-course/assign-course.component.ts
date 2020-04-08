@@ -15,13 +15,18 @@ export class AssignCourseComponent implements OnInit {
   dialogRef;
 
   constructor(
-    private courseService: CourseService,
-    // private dialog: MatDialog
+    private courseService: CourseService
   ) {}
 
   ngOnInit(): void {
     this.courses$ = this.courseService.courses$;
+    // this.getAllCoursesNames();
     this.getCoursesByStream("1");
+  }
+
+  getAllCoursesNames() {
+    this.courseService.getAllCourseNames()
+    .subscribe();
   }
 
   getCoursesByStream(stream: string) {
@@ -29,18 +34,12 @@ export class AssignCourseComponent implements OnInit {
   }
 
   tabChanged(eventArgs: MatTabChangeEvent) {
+    // this.getAllCoursesNames();
     this.getCoursesByStream(eventArgs.index + 1 + "");
   }
 
   showCourseDetails(eventArgs: any) {
     console.log("Viewing Details", eventArgs);
-    // this.dialogRef = this.dialog.open(CourseDetailsComponent, {
-    //   width: "600px",
-    //   closeOnNavigation: true,
-    //   data : {
-    //     CRN: eventArgs.CRN
-    //   }
-    // });
   }
   
 }

@@ -14,6 +14,8 @@ import { ProfessorCourseList } from './professor-course-list/professor-course-li
 import { AssignCourseComponent } from './assign-course/assign-course.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent,
@@ -25,7 +27,9 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     SharedModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

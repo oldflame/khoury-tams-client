@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output, ViewChild, SimpleChange
 import { Course } from "src/app/models/course";
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'professor-course-list',
@@ -18,11 +19,21 @@ export class ProfessorCourseList implements OnInit, AfterViewInit, OnChanges {
   dataSource: MatTableDataSource<Course>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  names=["guneet", "tanveer", "anirudh"];
-  
-  constructor() {}
+  instructors = ["guneet", "tanveer", "anirudh"];
+  editing = false;
+  profSelected = new Object();
 
-  ngOnInit(): void {}
+  constructor(private service: CourseService) {}
+
+  ngOnInit(): void {
+    this.service
+      .getAllProfessors()
+      .then(instructors => {
+        this.instructors = instructors;
+        console.log(this.instructors);
+
+      });
+  }
 
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource(this.coursesList);
@@ -47,7 +58,25 @@ export class ProfessorCourseList implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  // onCourseRowClicked(CRN: string) {
-  //   this.viewDetails.emit({ CRN });
-  // }
+  editClicked(element) {
+    console.log("Hello, edit is clicked!");
+    element.Instructors = '';
+
+    console.log(element)
+  }
+
+  saveClicked(value) {
+    this.editing = false;
+    
+    this.service.updateCourse
+
+    console.log(this.profSelected);
+    this.profSelected = '';
+    console.log("Save was clicked!");
+  }
+
+  instructorChanged(value) {
+    // this.profSelected = value;
+    // console.log(value);
+  }
 }

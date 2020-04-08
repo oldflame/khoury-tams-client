@@ -15,7 +15,7 @@ export class CourseService {
   private courseDetailsSubject = new BehaviorSubject(null);
   courseDetails$: Observable<Course> = this.courseDetailsSubject.asObservable();
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   getCourseByStream(stream: string): Observable<boolean> {
     return this.dataService.sendGET(`/courses/${stream}`).pipe(
@@ -51,9 +51,59 @@ export class CourseService {
     );
   }
 
-  
-  // getAllProfessors = () =>
-  //     fetch(`http://localhost:7000/courses`)
-  //       .then(response => response.json())
-  
+
+  getAllProfessors = () =>
+    fetch(`http://localhost:7000/instructors`)
+      .then(response => response.json())
+
+  getAllCourseNames(): Observable<boolean> {
+    return this.dataService.sendGET(`/courseNames`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.subject.next(res.body);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  getCourseById(id: string): Observable<boolean> {
+    return this.dataService.sendGET(`/courses/${id}`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.subject.next(res.body);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+
+  updateCourse(course: Course) {
+    return this.dataService.sendPOST(`/updateCourse`, course).pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
 }
