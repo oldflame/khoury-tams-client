@@ -4,6 +4,8 @@ import * as moment from "moment";
 import { Moment } from "moment";
 import { UserService } from "src/app/services/user.service";
 import { FillHoursService } from "src/app/services/fill-hours.service";
+import { Observable } from "rxjs";
+import { Course } from "src/app/models/course";
 
 @Component({
   selector: "day-card",
@@ -19,13 +21,17 @@ export class DayCardComponent implements OnInit {
   weeks;
   hourForms: FormGroup[] = [];
   moment = moment;
+
+  $hours: Observable<Course[]>;
+
   ngOnInit(): void {
     const startDate = moment("01-05-2020", "MM-DD-YYYY");
     const endDate = startDate.clone().add(4, "month");
     console.log("OUT", startDate, endDate);
     this.weeks = this.getDaysOfWeek(startDate, endDate);
-
-    console.log(this.hourForms.map((hourForm) => hourForm.value));
+    this.getAllSubmittedTaHoursForTA();
+    this.$hours = this.fillHours.allHours$;
+    console.log("All Hours", this.$hours);
   }
 
   getDaysOfWeek(startDate: Moment, endDate: Moment) {
@@ -64,5 +70,9 @@ export class DayCardComponent implements OnInit {
     const taId = JSON.parse(this.userService.getUserData())._id;
     hourForm.taId = taId;
     this.fillHours.sendWeeklyHours(hourForm).subscribe();
+  }
+
+  getAllSubmittedTaHoursForTA() {
+    this.fillHours.getAllHoursData(JSON.parse(this.userService.getUserData())._id).subscribe();
   }
 }

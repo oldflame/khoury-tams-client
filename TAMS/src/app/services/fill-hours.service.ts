@@ -3,13 +3,15 @@ import { DataService } from "./data.service";
 import { TaHours } from "../models/ta-hours";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { map, catchError } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class FillHoursService {
   constructor(private dataService: DataService) {}
+  private hours = new BehaviorSubject(null);
+  allHours$: Observable<any> = this.hours.asObservable();
 
   sendWeeklyHours(taHours: TaHours) {
     return this.dataService.sendPOST(`/submitHours`, taHours).pipe(
@@ -26,4 +28,23 @@ export class FillHoursService {
       })
     );
   }
-}
+
+  getAllHoursData(taId: string) {
+    console.log("IIn Service", taId);
+    return this.dataService.sendGET(`/getHours/${taId}`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.hours.next(res.body);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+  }
+
