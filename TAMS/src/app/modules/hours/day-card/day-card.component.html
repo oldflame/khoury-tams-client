@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+  <mat-tab-group>
+    <mat-tab *ngFor="let week of weeks; index as weekIndex" [label]="week[0].format('MM/DD/YYYY')"
+      [disabled]="moment(week[0]).startOf('day').unix() > moment().unix()">
+      <div class="row mx-0">
+        <div *ngFor="let day of week; index as dayIndex" class="col-12 col-md-4 col-lg-3 col-sm-6">
+          <div class="card m-2">
+            <div class="card-body">
+              <form [formGroup]="hourForms[(weekIndex * 7) + dayIndex]" class="form">
+                <p> {{day | amDateFormat: "dddd"}}: {{day | amDateFormat:"DD MMM YYYY"}}</p>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Hours</mat-label>
+                  <input matInput formControlName="hours">
+                  <mat-error
+                    *ngIf="hourForms[(weekIndex * 7) + dayIndex].get('hours').touched && hourForms[(weekIndex * 7) + dayIndex].get('hours').hasError('required')">
+                    Number of hours is <strong>required.</strong>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Activity</mat-label>
+                  <textarea matInput formControlName="activities">
+                  </textarea>
+                  <mat-error
+                    *ngIf="hourForms[(weekIndex * 7) + dayIndex].get('activities').touched && hourForms[(weekIndex * 7) + dayIndex].get('activities').hasError('required')">
+                    Activity is <strong>required.</strong>
+                  </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary"
+                  [disabled]="hourForms[(weekIndex * 7) + dayIndex].invalid || hourForms[(weekIndex * 7) + dayIndex].disabled"
+                  (click)='submitTaHours(hourForms[(weekIndex * 7) + dayIndex].value)'>Submit</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-12 col-md-4 col-lg-3 col-sm-6">
+          <div class="card m-2">
+            <div class="card-body text-center">
+              <p> Hit Confirm to confirm all of this week's hours for CS 5500. Once you do so, you will no longer be
+                able to edit hours or add more hours for this week. You must submit and confirm your hours by Monday
+                of the following week of your timezone or order to be paid on time.</p>
+              <button mat-raised-button color="primary" (click)="confirmAllHours($event); confirmbutton.disabled = true" #confirmbutton> Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -5,6 +5,7 @@ import {HomeModule} from './modules/home/home.module';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ApplicationModule } from './modules/application/application.module';
+import { HoursModule } from './modules/hours/hours.module';
 
 export const AppRoutes: Routes = [
   {
@@ -20,6 +21,10 @@ export const AppRoutes: Routes = [
         path: "home",
         loadChildren: () => HomeModule,
         canActivate: [AuthGuardService]
+      },
+      {
+        path: "fill",
+        loadChildren: () => HoursModule
       }
     ]
   },

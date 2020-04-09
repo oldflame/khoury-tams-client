@@ -19,4 +19,11 @@ export class DataService {
       observe: "response"
     });
   }
+
+  sendPUT(url: string, body?: any, headers?: any) {
+    return this.http.put(url, body, {
+      headers: new HttpHeaders(headers),
+      observe: "response"
+    });
+  }
 }

@@ -8,30 +8,41 @@ import {
   SimpleChange,
   SimpleChanges,
   Output,
-  EventEmitter
+  EventEmitter,
 } from "@angular/core";
 import { Course } from "src/app/models/course";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "courses-list",
   templateUrl: "./courses-list.component.html",
-  styleUrls: ["./courses-list.component.css"]
+  styleUrls: ["./courses-list.component.css"],
 })
 export class CoursesListComponent implements OnInit, OnChanges {
   @Input("coursesList") coursesList: Course[];
+
   @Output("viewDetails") viewDetails = new EventEmitter();
+  @Output("assignProfessor") assignProfessor = new EventEmitter();
 
   displayedColumns: string[] = ["Title", "Course", "CRN", "Instructors"];
   dataSource: MatTableDataSource<Course>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  showActionsControl = new FormControl(false);
 
   constructor() {}
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.coursesList);
     this.dataSource.paginator = this.paginator;
+    this.showActionsControl.valueChanges.subscribe((value: boolean) => {
+      if (value) {
+        this.displayedColumns.push("actions");
+      } else {
+        this.displayedColumns.pop();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -54,5 +65,12 @@ export class CoursesListComponent implements OnInit, OnChanges {
 
   onCourseRowClicked(CRN: string) {
     this.viewDetails.emit({ CRN });
+  }
+
+  assignProfessorClicked(event: any, course: Course) {
+    this.assignProfessor.emit({
+      course
+    });
+    event.stopPropagation();
   }
 }
