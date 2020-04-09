@@ -10,9 +10,6 @@ import {AppRoutes} from "./app.routing";
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {InterceptorService} from './services/interceptor.service';
 import {SharedModule} from './modules/shared/shared.module';
-import {ApplicationsComponent} from './modules/applications/applications.component';
-import {TaAcceptPositionComponent} from './modules/applications/ta-accept-position/ta-accept-position.component';
-import {TaApplyPositionComponent} from './modules/applications/ta-apply-position/ta-apply-position.component';
 import {MatCardModule} from "@angular/material/card";
 import {CustomCourseService} from "./services/course.service";
 import {ApplicationService} from "./services/application.service";
@@ -20,8 +17,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
-  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent,
-    ApplicationsComponent, TaAcceptPositionComponent, TaApplyPositionComponent],
+  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

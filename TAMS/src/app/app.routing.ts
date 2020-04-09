@@ -3,8 +3,8 @@ import {Routes} from "@angular/router";
 import {AuthModule} from './modules/auth/auth.module';
 import {HomeModule} from './modules/home/home.module';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
-import {ApplicationsComponent} from "./modules/applications/applications.component";
 import { AuthGuardService } from './services/auth-guard.service';
+import { ApplicationModule } from './modules/application/application.module';
 
 export const AppRoutes: Routes = [
   {
@@ -33,16 +33,22 @@ export const AppRoutes: Routes = [
       }
     ]
   },
+
   {
     path: "application",
-    component: ApplicationsComponent
+    children: [
+      {
+        path: "",
+        loadChildren: () => ApplicationModule
+      }
+    ]
   },
-  {
-    path: "application/apply",
-    component: ApplicationsComponent
-  },
-  {
-    path: "application/accept",
-    component: ApplicationsComponent
-  }
+  // {
+  //   path: "application/apply",
+  //   component: ApplicationsComponent
+  // },
+  // {
+  //   path: "application/accept",
+  //   component: ApplicationsComponent
+  // }
 ];
