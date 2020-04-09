@@ -6,6 +6,7 @@ import { MatTabChangeEvent } from "@angular/material/tabs";
 import { MatDialog } from "@angular/material/dialog";
 import { CourseDetailsComponent } from "../dialogs/course-details/course-details.component";
 import { FormControl } from "@angular/forms";
+import { SelectProfessorComponent } from '../dialogs/select-professor/select-professor.component';
 
 @Component({
   selector: "home",
@@ -47,6 +48,9 @@ export class HomeComponent implements OnInit {
 
   assignProfessor(eventArgs) {
     console.log(eventArgs);
-
+    this.dialogRef = this.dialog.open(SelectProfessorComponent, {
+      width: "500px",
+      closeOnNavigation: true,
+    });
   }
 }
