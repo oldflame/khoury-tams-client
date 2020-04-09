@@ -7,7 +7,7 @@ export const ApplicationRoutes: Routes = [
     path: "",
     children: [
       {
-        path: "apply",
+        path: "",
         component: ApplicationsComponent
       },
       {

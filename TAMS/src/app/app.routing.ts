@@ -24,7 +24,13 @@ export const AppRoutes: Routes = [
       },
       {
         path: "fill",
-        loadChildren: () => HoursModule
+        loadChildren: () => HoursModule,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "applications",
+        loadChildren: () => ApplicationModule,
+        canActivate: [AuthGuardService]
       }
     ]
   },
@@ -47,13 +53,5 @@ export const AppRoutes: Routes = [
         loadChildren: () => ApplicationModule
       }
     ]
-  },
-  // {
-  //   path: "application/apply",
-  //   component: ApplicationsComponent
-  // },
-  // {
-  //   path: "application/accept",
-  //   component: ApplicationsComponent
-  // }
+  }
 ];
