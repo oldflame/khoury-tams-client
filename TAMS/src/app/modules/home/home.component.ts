@@ -1,12 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course";
-import { Observable } from "rxjs";
+import { Observable, EMPTY } from "rxjs";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { MatDialog } from "@angular/material/dialog";
 import { CourseDetailsComponent } from "../dialogs/course-details/course-details.component";
 import { FormControl } from "@angular/forms";
-import { SelectProfessorComponent } from '../dialogs/select-professor/select-professor.component';
+import { SelectProfessorComponent } from "../dialogs/select-professor/select-professor.component";
+import { Professor } from "src/app/models/professor";
+import { switchMap } from "rxjs/operators";
 
 @Component({
   selector: "home",
@@ -52,5 +54,19 @@ export class HomeComponent implements OnInit {
       width: "500px",
       closeOnNavigation: true,
     });
+
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((professor: Professor) => {
+          if (professor) {
+            console.log("Selected prof: ", professor);
+            eventArgs.course.Instructors = professor.Instructors;
+            return this.courseService.updateCourse(eventArgs);
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 }

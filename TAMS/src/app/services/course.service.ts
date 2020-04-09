@@ -5,6 +5,7 @@ import { Course } from "../models/course";
 import { map, catchError } from "rxjs/operators";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Professor } from "../models/professor";
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: "root",
@@ -60,6 +61,26 @@ export class CourseService {
       map((res: HttpResponse<object>) => {
         if (res.status === 200) {
           this.professorSubject.next(res.body);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  updateCourse(course: Course): Observable<boolean> {
+    return this.dataService.sendPUT(`/updateCourse`, course).pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          const courses = this.subject.value;
+          const courseIndexToUpdate = _.findIndex(courses, {_id: course._id});
+          courses.splice(courseIndexToUpdate, 1, course);
+          this.subject.next(_.cloneDeep(courses));
           return true;
         } else {
           return false;
