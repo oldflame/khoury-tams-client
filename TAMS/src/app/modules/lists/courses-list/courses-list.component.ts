@@ -22,7 +22,9 @@ import { FormControl } from "@angular/forms";
 })
 export class CoursesListComponent implements OnInit, OnChanges {
   @Input("coursesList") coursesList: Course[];
+
   @Output("viewDetails") viewDetails = new EventEmitter();
+  @Output("assignProfessor") assignProfessor = new EventEmitter();
 
   displayedColumns: string[] = ["Title", "Course", "CRN", "Instructors"];
   dataSource: MatTableDataSource<Course>;
@@ -63,5 +65,12 @@ export class CoursesListComponent implements OnInit, OnChanges {
 
   onCourseRowClicked(CRN: string) {
     this.viewDetails.emit({ CRN });
+  }
+
+  assignProfessorClicked(event: any, course: Course) {
+    this.assignProfessor.emit({
+      course
+    });
+    event.stopPropagation();
   }
 }

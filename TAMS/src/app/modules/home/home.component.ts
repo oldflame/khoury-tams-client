@@ -44,4 +44,9 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+
+  assignProfessor(eventArgs) {
+    console.log(eventArgs);
+
+  }
 }

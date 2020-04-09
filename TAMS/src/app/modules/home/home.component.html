@@ -4,22 +4,22 @@
       <mat-tab-group (selectedTabChange)="tabChanged($event)">
         <mat-tab label="Masters in Computer Science">
           <ng-template matTabContent>
-            <courses-list [coursesList]="courses$ | async" (viewDetails)="showCourseDetails($event)"> </courses-list>
+            <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
           </ng-template>
         </mat-tab>
         <mat-tab label="Masters in Data Science">
           <ng-template matTabContent>
-            <courses-list [coursesList]="courses$ | async" (viewDetails)="showCourseDetails($event)"> </courses-list>
+            <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
           </ng-template>
         </mat-tab>
         <mat-tab label="Masters in Cyber Security">
           <ng-template matTabContent>
-            <courses-list [coursesList]="courses$ | async" (viewDetails)="showCourseDetails($event)"> </courses-list>
+            <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
           </ng-template>
         </mat-tab>
         <mat-tab label="Masters in Health Informatics">
           <ng-template matTabContent>
-            <courses-list [coursesList]="courses$ | async" (viewDetails)="showCourseDetails($event)"> </courses-list>
+            <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
           </ng-template>
         </mat-tab>
       </mat-tab-group>
