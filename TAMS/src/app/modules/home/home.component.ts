@@ -4,12 +4,13 @@ import { Course } from "src/app/models/course";
 import { Observable } from "rxjs";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { MatDialog } from "@angular/material/dialog";
-import { CourseDetailsComponent } from '../dialogs/course-details/course-details.component';
+import { CourseDetailsComponent } from "../dialogs/course-details/course-details.component";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
   courses$: Observable<Course[]>;
@@ -38,9 +39,9 @@ export class HomeComponent implements OnInit {
     this.dialogRef = this.dialog.open(CourseDetailsComponent, {
       width: "600px",
       closeOnNavigation: true,
-      data : {
-        CRN: eventArgs.CRN
-      }
+      data: {
+        CRN: eventArgs.CRN,
+      },
     });
   }
 }

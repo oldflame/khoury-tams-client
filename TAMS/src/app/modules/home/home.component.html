@@ -8,7 +8,6 @@
           </ng-template>
         </mat-tab>
         <mat-tab label="Masters in Data Science">
-
           <ng-template matTabContent>
             <courses-list [coursesList]="courses$ | async" (viewDetails)="showCourseDetails($event)"> </courses-list>
           </ng-template>
