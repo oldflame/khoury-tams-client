@@ -1,11 +1,12 @@
-import { Injectable } from "@angular/core";
-import { DataService } from "./data.service";
-import { BehaviorSubject, Observable, of } from "rxjs";
-import { Course } from "../models/course";
-import { map, catchError } from "rxjs/operators";
-import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {DataService} from "./data.service";
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {Course} from "../models/course";
+import {map, catchError} from "rxjs/operators";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import { Professor } from "../models/professor";
 import * as _ from 'lodash';
+
 
 @Injectable({
   providedIn: "root",
@@ -20,7 +21,8 @@ export class CourseService {
   private courseDetailsSubject = new BehaviorSubject(null);
   courseDetails$: Observable<Course> = this.courseDetailsSubject.asObservable();
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) {
+  }
 
   getCourseByStream(stream: string): Observable<boolean> {
     return this.dataService.sendGET(`/courses/${stream}`).pipe(
@@ -92,4 +94,11 @@ export class CourseService {
       })
     );
   }
+}
+
+@Injectable()
+export class CustomCourseService {
+  getAllCourses = () =>
+    fetch(`http://localhost:7000/courses`)
+      .then(response => response.json())
 }

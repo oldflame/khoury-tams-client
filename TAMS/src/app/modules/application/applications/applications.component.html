@@ -1,0 +1,45 @@
+<div>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand wbdv-course-editor" href="">
+        <i class="fas fa-times fa"></i></a>
+      <div class="nav-item wbdv-text-white">
+        <div class="nav-link wbdv-bold-text">
+          TA Portal for {{firstName}} {{lastName}}
+        </div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div class="ml-auto">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0 wbdv-page-tab">
+            <li class="nav-item wbdv-menu-padding wbdv-bold-text">
+              <a class="nav-link" routerLink="/application/apply">
+                APPLY
+              </a>
+            </li>
+            <li class="nav-item wbdv-menu-padding wbdv-bold-text">
+              <a class="nav-link" routerLink="/application/accept">
+                ACCEPT
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="row w-100">
+      <div style="padding-right: 0 !important">
+        <ta-apply-position *ngIf="router.url != '/application/accept'"></ta-apply-position>
+      </div>
+      <div style="padding-right: 0 !important">
+        <ta-accept-position *ngIf="router.url != '/application/apply'"></ta-accept-position>
+      </div>
+    </div>
+  </div>
+</div>

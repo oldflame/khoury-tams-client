@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as SecureLS from 'secure-ls';
 
 @Injectable({
@@ -7,7 +7,8 @@ import * as SecureLS from 'secure-ls';
 export class SecureStorageService {
   private ls = new SecureLS({encodingType: 'aes'});
 
-  constructor() { }
+  constructor() {
+  }
 
   setValue(key: string, value: any): void {
     this.ls.set(key, value);

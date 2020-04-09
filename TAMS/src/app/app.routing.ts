@@ -1,9 +1,10 @@
-import { AuthLayoutComponent } from "./layout/auth-layout/auth-layout.component";
-import { Routes } from "@angular/router";
-import { AuthModule } from './modules/auth/auth.module';
-import { HomeModule } from './modules/home/home.module';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
+import {Routes} from "@angular/router";
+import {AuthModule} from './modules/auth/auth.module';
+import {HomeModule} from './modules/home/home.module';
+import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ApplicationModule } from './modules/application/application.module';
 import { HoursModule } from './modules/hours/hours.module';
 
 export const AppRoutes: Routes = [
@@ -36,5 +37,23 @@ export const AppRoutes: Routes = [
         loadChildren: () => AuthModule
       }
     ]
-  }
+  },
+
+  {
+    path: "application",
+    children: [
+      {
+        path: "",
+        loadChildren: () => ApplicationModule
+      }
+    ]
+  },
+  // {
+  //   path: "application/apply",
+  //   component: ApplicationsComponent
+  // },
+  // {
+  //   path: "application/accept",
+  //   component: ApplicationsComponent
+  // }
 ];
