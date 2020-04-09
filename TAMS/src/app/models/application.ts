@@ -1,12 +1,14 @@
 export interface Application {
-  Email: string;
-  FirstName: string;
-  LastName: string;
-  Level: string;
-  GpaInSubject: string;
-  LookingForCoop: string;
-  Notes: string;
-  CourseNumber: string;
-  ProfTakingCourse: string;
-  CurrentGPA: string;
+  _id?: string;
+  applicantId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  level: string;
+  gpaInSubject: string;
+  lookingForCoop: string;
+  notes: string;
+  courseNumber: string;
+  profTakingCourse: string;
+  currentGpa: string;
 }

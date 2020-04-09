@@ -24,6 +24,23 @@ export class CourseService {
   constructor(private dataService: DataService) {
   }
 
+  getAllCourses(): Observable<boolean> {
+    return this.dataService.sendGET(`/courses/`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.subject.next(res.body);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
   getCourseByStream(stream: string): Observable<boolean> {
     return this.dataService.sendGET(`/courses/${stream}`).pipe(
       map((res: HttpResponse<object>) => {

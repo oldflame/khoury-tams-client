@@ -60,7 +60,6 @@ export class HomeComponent implements OnInit {
       .pipe(
         switchMap((professor: Professor) => {
           if (professor) {
-            console.log("Selected prof: ", professor);
             eventArgs.course.Instructors = professor.Instructors;
             return this.courseService.updateCourse(eventArgs);
           }
