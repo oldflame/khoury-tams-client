@@ -8,7 +8,6 @@ import { Course } from "src/app/models/course";
 import { map } from "rxjs/operators";
 import { Application } from "src/app/models/application";
 import * as _ from "lodash";
-import { ApplicationsComponent } from "../applications/applications.component";
 
 @Component({
   selector: "ta-apply-position",
