@@ -70,7 +70,6 @@ export class UserService {
 
   getUserData() {
     const user = this.secureStorageService.getValue("user");
-    console.log(user);
     return user;
   }
 }
