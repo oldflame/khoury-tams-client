@@ -92,6 +92,22 @@ export class CourseService {
     );
   }
 
+  addCourse(course: Course): Observable<boolean> {
+    return this.dataService.sendPOST(`/addCourse`, course).pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
   updateCourse(course: Course): Observable<boolean> {
     return this.dataService.sendPUT(`/updateCourse`, course).pipe(
       map((res: HttpResponse<any>) => {
