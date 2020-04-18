@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationStart, NavigationEnd } from "@angular/router";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "main-navbar",
@@ -7,7 +8,7 @@ import { Router, NavigationStart, NavigationEnd } from "@angular/router";
   styleUrls: ["./main-navbar.component.css"],
 })
 export class MainNavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
   activeLink: string;
   links = [
     {
@@ -21,7 +22,7 @@ export class MainNavbarComponent implements OnInit {
     {
       viewValue: "Applications",
       route: "/account/applications",
-    }
+    },
   ];
 
   ngOnInit(): void {
@@ -29,9 +30,14 @@ export class MainNavbarComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         console.log("route", event.url);
         this.activeLink = event.url;
-       }
+      }
     });
 
     this.activeLink = this.router.url;
+  }
+
+  signOut() {
+    this.router.navigate(["/login"]);
+    this.userService.signout();
   }
 }
