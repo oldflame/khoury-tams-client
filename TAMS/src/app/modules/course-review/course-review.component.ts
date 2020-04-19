@@ -28,10 +28,9 @@ export class CourseReviewComponent implements OnInit {
     console.log(this.review)
   }
 
-
   submitReview(){
     console.log(this.review)
-    fetch(`http://localhost:7000/course/${this.review.courseId}/review}`, {
+    fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`, {
         method: 'POST',
         body: JSON.stringify(this.review),
         headers: {

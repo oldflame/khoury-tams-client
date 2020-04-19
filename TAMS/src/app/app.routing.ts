@@ -61,7 +61,7 @@ export const AppRoutes: Routes = [
     component: ProfileComponent
   },
   {
-    path: "course/:courseId",
+    path: "course/:courseId/reviews",
     component: CourseReviewComponent
   }
 
