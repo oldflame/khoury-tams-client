@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../services/user.service";
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'profile',
@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   loggedInUser: any;
   editing: boolean = false;
@@ -23,12 +24,19 @@ export class ProfileComponent implements OnInit {
     if (!this.editing) {
       this.editing = true;
       // this.router.navigate([`/profile/${this.loggedInUser._id}`]);
-    }
-    else {
+    } else {
       this.editing = false;
       // this.router.navigate(["/profile"]);
       console.log(this.loggedInUser)
-      this.userService.updateUserById(this.loggedInUser);
+      // this.userService.updateUserById(this.loggedInUser);
+      fetch(`http://localhost:7000/profile/${this.loggedInUser._id}`, {
+        method: 'PUT',
+        body: JSON.stringify(this.loggedInUser),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(response => response.json())
+        .then(status => console.log(status));
     }
   }
 
