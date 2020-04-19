@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course";
-import { Observable, EMPTY } from "rxjs";
+import { Observable, EMPTY, pipe } from "rxjs";
 import { MatTabChangeEvent } from "@angular/material/tabs";
 import { MatDialog } from "@angular/material/dialog";
 import { CourseDetailsComponent } from "../dialogs/course-details/course-details.component";
@@ -9,6 +9,7 @@ import { FormControl } from "@angular/forms";
 import { SelectProfessorComponent } from "../dialogs/select-professor/select-professor.component";
 import { Professor } from "src/app/models/professor";
 import { switchMap } from "rxjs/operators";
+import { AddCourseComponent } from "../dialogs/add-course/add-course.component";
 
 @Component({
   selector: "home",
@@ -18,6 +19,7 @@ import { switchMap } from "rxjs/operators";
 export class HomeComponent implements OnInit {
   courses$: Observable<Course[]>;
   dialogRef;
+  selectedTab: number;
 
   constructor(
     private courseService: CourseService,
@@ -34,7 +36,9 @@ export class HomeComponent implements OnInit {
   }
 
   tabChanged(eventArgs: MatTabChangeEvent) {
-    this.getCoursesByStream(eventArgs.index + 1 + "");
+    this.selectedTab = eventArgs.index + 1;
+    console.log("STREAM", this.selectedTab);
+    this.getCoursesByStream(this.selectedTab + "");
   }
 
   showCourseDetails(eventArgs: any) {
@@ -62,6 +66,27 @@ export class HomeComponent implements OnInit {
           if (professor) {
             eventArgs.course.Instructors = professor.Instructors;
             return this.courseService.updateCourse(eventArgs);
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe();
+  }
+
+  showAddCourseDialog() {
+    this.dialogRef = this.dialog.open(AddCourseComponent, {
+      width: "800px",
+      closeOnNavigation: true,
+    });
+
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((res: Course) => {
+          if (res) {
+            res.stream = this.selectedTab + "";
+            console.log(res);
+            return this.courseService.addCourse(res);
           }
           return EMPTY;
         })
