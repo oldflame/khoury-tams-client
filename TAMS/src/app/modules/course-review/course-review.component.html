@@ -1,32 +1,35 @@
 <main-navbar></main-navbar>
 <div class="container">
-    <br>
-    <br>
+  <br>
+  <br>
 
-    <br>
-    <div class="container">
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Title</mat-label>
-            <input matInput placeholder="Title" [(ngModel)]="review.title" name="title">
+  <br>
+  <div class="container">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" [(ngModel)]="review.title" name="title">
 
-        </mat-form-field>
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Review</mat-label>
-            <textarea matInput placeholder="Review" [(ngModel)]="review.review" name="Review" cdkTextareaAutosize
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Review</mat-label>
+      <textarea matInput placeholder="Review" [(ngModel)]="review.review" name="Review"
+                cdkTextareaAutosize
                 cdkAutosizeMinRows="5" cdkAutosizeMinColumns="5" cdkAutosizeMaxRows="10"
                 #autosize="cdkTextareaAutosize">
             </textarea>
 
-        </mat-form-field>
-    </div>
+    </mat-form-field>
+  </div>
 
-    <div class="col-md-12 text-right">
-        <button mat-raised-button color="primary" class="pull-right" (click)="submitReview()">Add Review</button>
-    </div>
-    <br>
+  <div class="col-md-12 text-right">
+    <button mat-raised-button color="primary" class="pull-right" (click)="submitReview()">Add
+      Review
+    </button>
+  </div>
+  <br>
 
-    <div class="container">
-        <div class="col-md-11">
+  <div class="container">
+    <div class="col-md-11">
             <span *ngFor="let review of allReviews">
                 <mat-card>
                     <mat-card-subtitle>
@@ -38,7 +41,6 @@
                 </mat-card>
                 <br>
             </span>
-        </div>
     </div>
-
+  </div>
 </div>

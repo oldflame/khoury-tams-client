@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 import {Course} from "../models/course";
 import {map, catchError} from "rxjs/operators";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import { Professor } from "../models/professor";
+import {Professor} from "../models/professor";
 import * as _ from 'lodash';
 
 
@@ -133,5 +133,8 @@ export class CourseService {
 export class CustomCourseService {
   getAllCourses = () =>
     fetch(`http://localhost:7000/courses`)
+      .then(response => response.json())
+  getCourseDetails = (CRN) =>
+    fetch(`http://localhost:7000/courses/details/${CRN}`)
       .then(response => response.json())
 }
