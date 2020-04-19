@@ -74,6 +74,11 @@ export class UserService {
     return user;
   }
 
+  getUserById = (userId) => {
+    fetch(`http://localhost:7000/users/${userId}`)
+      .then(response => response.json());
+  }
+
   // updateUserById(user: User): Observable<boolean> {
   //   return this.dataService.sendPUT(`/profile/:profileId`, user).pipe(
   //     map((res: HttpResponse<any>) => {
@@ -90,4 +95,11 @@ export class UserService {
   //     })
   //   );
   // }
+}
+
+@Injectable()
+export class ProfileService {
+  getUserById = (userId) =>
+    fetch(`http://localhost:7000/users/${userId}`)
+      .then(response => response.json())
 }
