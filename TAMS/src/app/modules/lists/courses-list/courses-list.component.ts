@@ -26,7 +26,7 @@ export class CoursesListComponent implements OnInit, OnChanges {
   @Output("viewDetails") viewDetails = new EventEmitter();
   @Output("assignProfessor") assignProfessor = new EventEmitter();
 
-  displayedColumns: string[] = ["Title", "Course", "CRN", "Instructors"];
+  displayedColumns: string[] = ["Title", "Course", "CRN", "Instructors", "Review"];
   dataSource: MatTableDataSource<Course>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   showActionsControl = new FormControl(false);

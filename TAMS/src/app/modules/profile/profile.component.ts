@@ -38,10 +38,8 @@ export class ProfileComponent implements OnInit {
 
   clicked() {
     if (!this.editing) {
-      // this.editing = true;
       this.router.navigate([`/profile/${this.loggedInUser._id}`]);
     } else {
-      // this.editing = false;
       this.router.navigate(["/profile"]);
       fetch(`http://localhost:7000/profile/${this.loggedInUser._id}`, {
         method: 'PUT',
