@@ -45,18 +45,23 @@ export class CourseReviewComponent implements OnInit {
     this.review.userId = JSON.parse(this.userService.getUserData())._id;
     this.route.params.subscribe(params => {
       this.review.courseId = params.courseId;
-    })
+      this.getReviews();
+    });
+
+    // console.log(this.review);
+  }
+
+  getReviews() {
     fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`)
       .then(async response => {
         // console.log(response.json());
         this.allReviews = await response.json()
         console.log(this.allReviews);
       });
-    // console.log(this.review);
   }
 
   submitReview() {
-    console.log(this.review)
+    // console.log(this.review)
     fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`, {
       method: 'POST',
       body: JSON.stringify(this.review),
@@ -66,6 +71,7 @@ export class CourseReviewComponent implements OnInit {
     }).then(response => {
       console.log(response.json());
     });
+    this.getReviews();
   }
 
 
