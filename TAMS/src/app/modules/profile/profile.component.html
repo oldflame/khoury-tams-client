@@ -35,6 +35,14 @@
         </mat-form-field>
       </div>
 
+      <div class="col-12 col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Logged in as</mat-label>
+          <input matInput placeholder="loggedInAs" [disabled]="true" [(ngModel)]="loggedInUser.role"
+            name="role">
+        </mat-form-field>
+      </div>
+
     </div>
 
     <div class="row my-3">

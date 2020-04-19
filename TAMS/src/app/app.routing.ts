@@ -61,6 +61,10 @@ export const AppRoutes: Routes = [
     component: ProfileComponent
   },
   {
+    path: "profile/:profileId",
+    component: ProfileComponent
+  },
+  {
     path: "course/:courseId/reviews",
     component: CourseReviewComponent
   }
