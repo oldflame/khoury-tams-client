@@ -7,6 +7,7 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {ApplicationModule} from './modules/application/application.module';
 import {HoursModule} from './modules/hours/hours.module';
 import {ProfileComponent} from "./modules/profile/profile.component";
+import { CourseReviewComponent } from './modules/course-review/course-review.component';
 
 export const AppRoutes: Routes = [
   {
@@ -58,5 +59,10 @@ export const AppRoutes: Routes = [
   {
     path: "profile",
     component: ProfileComponent
+  },
+  {
+    path: "course/:courseId",
+    component: CourseReviewComponent
   }
+
 ];

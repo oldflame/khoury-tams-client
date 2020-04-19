@@ -1,0 +1,26 @@
+<main-navbar></main-navbar>
+<div class="container">
+    <br>
+    <br>
+
+    <br>
+    <div class="container">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" name="title">
+
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Review</mat-label>
+            <textarea matInput placeholder="Review" name="Review" cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMinColumns="5"
+                cdkAutosizeMaxRows="10" #autosize="cdkTextareaAutosize" (change)="onDescChange()">
+            </textarea>
+
+        </mat-form-field>
+    </div>
+
+    <div class="col-md-12 text-right">
+        <button mat-raised-button color="primary" class="pull-right" click="submitReview()">Add Review</button>
+    </div>
+
+</div>
