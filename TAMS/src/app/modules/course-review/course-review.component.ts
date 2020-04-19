@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {UserService} from 'src/app/services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { CustomCourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'course-review',
@@ -9,16 +10,34 @@ import {UserService} from 'src/app/services/user.service';
 })
 export class CourseReviewComponent implements OnInit {
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService,
+    private route: ActivatedRoute,
+    private customService: CustomCourseService) {
   }
 
-  review: any = {courseId: '', userId: '', title: '', review: ''};
+  review: any =
+    {
+      courseId: '', userId: '', title: '', review: '',
+      takenBefore: false, semesterTaken: '', yearTaken: '',
+      firstName: '', lastName: ''
+    };
+  course: any;
+  semesters: any = ["Fall", "Spring", "Summer"];
   allReviews: [];
+  currentUser: any;
 
   ngOnInit(): void {
-    this.review.userId = JSON.parse(this.userService.getUserData())._id;
+    this.currentUser = JSON.parse(this.userService.getUserData());
+    this.review.userId = this.currentUser._id;
+    this.review.firstName = this.currentUser.firstName;
+    this.review.lastName = this.currentUser.lastName;
     this.route.params.subscribe(params => {
       this.review.courseId = params.courseId;
+      this.customService.getCourseById(this.review.courseId)
+        .then(course => {
+          this.course = course[0];
+          console.log(this.course)
+        });
       this.getReviews();
     });
   }
@@ -27,11 +46,12 @@ export class CourseReviewComponent implements OnInit {
     fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`)
       .then(async response => {
         this.allReviews = await response.json()
-        console.log(this.allReviews);
+        // console.log(this.allReviews);
       });
   }
 
   submitReview() {
+    console.log(this.review);
     fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`, {
       method: 'POST',
       body: JSON.stringify(this.review),
@@ -43,6 +63,7 @@ export class CourseReviewComponent implements OnInit {
     });
     this.getReviews();
   }
+
 
 
 }

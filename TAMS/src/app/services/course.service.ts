@@ -134,4 +134,9 @@ export class CustomCourseService {
   getAllCourses = () =>
     fetch(`http://localhost:7000/courses`)
       .then(response => response.json())
+
+  getCourseById = (id) => 
+    fetch(`http://localhost:7000/course/${id}`)
+      .then(response => response.json())
+
 }

@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if(params.profileId) {
+      if(params.profileId != null) {
         this.editing = true;
       }
       else {
@@ -40,15 +40,21 @@ export class ProfileComponent implements OnInit {
     if (!this.editing) {
       this.router.navigate([`/profile/${this.loggedInUser._id}`]);
     } else {
-      this.router.navigate(["/profile"]);
       fetch(`http://localhost:7000/profile/${this.loggedInUser._id}`, {
         method: 'PUT',
         body: JSON.stringify(this.loggedInUser),
         headers: {
           'content-type': 'application/json'
         }
-      }).then(response => response.json())
-        .then(updatedUser => this.loggedInUser = updatedUser);
+      }).then(response => {
+        console.log("I'm here")
+        console.log(response.json())
+      })
+        .then(updatedUser => {
+          this.loggedInUser = updatedUser;
+          console.log(this.loggedInUser);
+        });
+      this.router.navigate(["/profile"]);
     }
   }
 

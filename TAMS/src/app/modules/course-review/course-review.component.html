@@ -2,22 +2,46 @@
 <div class="container">
     <br>
     <br>
-
+    <h4 *ngIf="course" class="text-center">Reviews for {{course.Course}} - {{course.Title}}</h4>
     <br>
     <div class="container">
+
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Title</mat-label>
-            <input matInput placeholder="Title" [(ngModel)]="review.title" name="title">
-
+            <input matInput placeholder="Title" required [(ngModel)]="review.title" name="title">
         </mat-form-field>
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Review</mat-label>
-            <textarea matInput placeholder="Review" [(ngModel)]="review.review" name="Review" cdkTextareaAutosize
-                cdkAutosizeMinRows="5" cdkAutosizeMinColumns="5" cdkAutosizeMaxRows="10"
+            <textarea matInput placeholder="Review" required [(ngModel)]="review.review" name="Review"
+                cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMinColumns="5" cdkAutosizeMaxRows="10"
                 #autosize="cdkTextareaAutosize">
             </textarea>
 
         </mat-form-field>
+        <div class="col-12">
+            <mat-checkbox class="example-mat-checkbox" color="primary" [(ngModel)]="review.takenBefore">Taken this
+                course previosuly.
+            </mat-checkbox>
+        </div>
+        <div class="col-md-12" style="display: flex;" *ngIf="review.takenBefore">
+            <div class="col-md-3" style="padding-left:0;">
+                <mat-form-field class="full-width">
+                    <mat-label>Semester</mat-label>
+                    <mat-select [(ngModel)]="review.semesterTaken">
+                        <mat-option *ngFor="let sem of semesters" [value]="sem">
+                            {{sem}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3" style="padding-left:0 ;">
+                <mat-form-field class="full-width">
+                    <mat-label>Year Taken</mat-label>
+                    <input type="number" matInput placeholder="Year Taken" [(ngModel)]="review.yearTaken"
+                        name="yearTaken">
+                </mat-form-field>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-12 text-right">
@@ -29,8 +53,12 @@
         <div class="col-md-11">
             <span *ngFor="let review of allReviews">
                 <mat-card>
-                    <mat-card-subtitle>
+                    <mat-card-title>
                         {{review.title}}
+                    </mat-card-title>
+                    <mat-card-subtitle *ngIf="review.takenBefore === true">
+                        Course taken by {{review.firstName}} {{review.lastName}} in {{review.semesterTaken}},
+                        {{review.yearTaken}}
                     </mat-card-subtitle>
                     <mat-card-content>
                         {{review.review}}
