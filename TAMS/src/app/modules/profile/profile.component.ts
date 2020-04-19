@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../../services/user.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'profile',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
+
+  loggedInUser: any;
+  editing: boolean = false;
 
   ngOnInit(): void {
+    this.loggedInUser = JSON.parse(this.userService.getUserData());
+    console.log(this.loggedInUser);
+  }
+
+  clicked() {
+    if (!this.editing) {
+      this.editing = true;
+      this.router.navigate([`/profile/${this.loggedInUser._id}`]);
+    }
+    else {
+      this.editing = false;
+      this.router.navigate(["/profile"]);
+      console.log(this.loggedInUser)
+      this.userService.updateUserById(this.loggedInUser);
+    }
   }
 
 }

@@ -72,4 +72,20 @@ export class UserService {
     const user = this.secureStorageService.getValue("user");
     return user;
   }
+
+  updateUserById(user: User): Observable<boolean> {
+    return this.dataService.sendPUT(`/profile/:profileId`, user).pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
 }
