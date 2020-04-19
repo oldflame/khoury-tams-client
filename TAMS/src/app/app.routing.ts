@@ -58,5 +58,5 @@ export const AppRoutes: Routes = [
   {
     path: "profile",
     component: ProfileComponent
-  }
+  },
 ];

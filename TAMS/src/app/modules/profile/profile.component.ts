@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../services/user.service";
+import {ProfileService, UserService} from "../../services/user.service";
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,15 +9,22 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService,
+              private router: Router,
+              private profileService: ProfileService) {
   }
 
   loggedInUser: any;
-  editing: boolean = false;
+  editing = false;
+  userId: '';
 
   ngOnInit(): void {
-    this.loggedInUser = JSON.parse(this.userService.getUserData());
-    console.log(this.loggedInUser);
+    this.userId = JSON.parse(this.userService.getUserData())._id;
+    this.profileService
+      .getUserById(this.userId)
+      .then(user => {
+        this.loggedInUser = user[0];
+      });
   }
 
   clicked() {
@@ -27,8 +34,6 @@ export class ProfileComponent implements OnInit {
     } else {
       this.editing = false;
       // this.router.navigate(["/profile"]);
-      console.log(this.loggedInUser)
-      // this.userService.updateUserById(this.loggedInUser);
       fetch(`http://localhost:7000/profile/${this.loggedInUser._id}`, {
         method: 'PUT',
         body: JSON.stringify(this.loggedInUser),
@@ -36,7 +41,7 @@ export class ProfileComponent implements OnInit {
           'content-type': 'application/json'
         }
       }).then(response => response.json())
-        .then(status => console.log(status));
+        .then(updatedUser => this.loggedInUser = updatedUser);
     }
   }
 

@@ -15,9 +15,10 @@ import {CustomCourseService} from "./services/course.service";
 import {ApplicationService} from "./services/application.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import { ProfileComponent } from './modules/profile/profile.component';
+import {ProfileComponent} from './modules/profile/profile.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MaterialModule} from "./material.modules";
+import {ProfileService} from "./services/user.service";
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent, ProfileComponent],
@@ -37,9 +38,11 @@ import {MaterialModule} from "./material.modules";
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
-    multi: true},
+    multi: true
+  },
     CustomCourseService,
-    ApplicationService],
+    ApplicationService,
+    ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
