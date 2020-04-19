@@ -77,6 +77,7 @@ export class UserService {
     return this.dataService.sendPUT(`/profile/:profileId`, user).pipe(
       map((res: HttpResponse<any>) => {
         if (res.status === 200) {
+          console.log("Updated user : " ,user);
           return true;
         } else {
           return false;

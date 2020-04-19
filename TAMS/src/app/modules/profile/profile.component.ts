@@ -22,11 +22,11 @@ export class ProfileComponent implements OnInit {
   clicked() {
     if (!this.editing) {
       this.editing = true;
-      this.router.navigate([`/profile/${this.loggedInUser._id}`]);
+      // this.router.navigate([`/profile/${this.loggedInUser._id}`]);
     }
     else {
       this.editing = false;
-      this.router.navigate(["/profile"]);
+      // this.router.navigate(["/profile"]);
       console.log(this.loggedInUser)
       this.userService.updateUserById(this.loggedInUser);
     }
