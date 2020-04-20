@@ -10,6 +10,8 @@ import { SelectProfessorComponent } from "../dialogs/select-professor/select-pro
 import { Professor } from "src/app/models/professor";
 import { switchMap } from "rxjs/operators";
 import { AddCourseComponent } from "../dialogs/add-course/add-course.component";
+import { SecureStorageService } from "src/app/services/secure-storage.service";
+import { User } from "src/app/models/user";
 
 @Component({
   selector: "home",
@@ -20,11 +22,15 @@ export class HomeComponent implements OnInit {
   courses$: Observable<Course[]>;
   dialogRef;
   selectedTab: number;
-
+  currentUser: User;
   constructor(
+    private secureStorageService: SecureStorageService,
     private courseService: CourseService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
+    console.log(this.currentUser);
+  }
 
   ngOnInit(): void {
     this.courses$ = this.courseService.courses$;

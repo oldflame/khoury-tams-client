@@ -3,7 +3,7 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Search Courses">
   </mat-form-field>
-  <mat-slide-toggle class="mt-3" [formControl]="showActionsControl">Show Actions</mat-slide-toggle>
+  <mat-slide-toggle *ngIf="enableShowAction" class="mt-3" [formControl]="showActionsControl">Show Actions</mat-slide-toggle>
 </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

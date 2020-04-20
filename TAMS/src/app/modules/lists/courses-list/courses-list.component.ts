@@ -22,7 +22,7 @@ import { FormControl } from "@angular/forms";
 })
 export class CoursesListComponent implements OnInit, OnChanges {
   @Input("coursesList") coursesList: Course[];
-
+  @Input("enableShowAction") enableShowAction: boolean;
   @Output("viewDetails") viewDetails = new EventEmitter();
   @Output("assignProfessor") assignProfessor = new EventEmitter();
 
