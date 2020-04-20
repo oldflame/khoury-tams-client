@@ -6,6 +6,7 @@ import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component
 import { AuthGuardService } from './services/auth-guard.service';
 import { ApplicationModule } from './modules/application/application.module';
 import { HoursModule } from './modules/hours/hours.module';
+import { HoursGuardService } from './services/hours-guard.service';
 
 export const AppRoutes: Routes = [
   {
@@ -25,7 +26,7 @@ export const AppRoutes: Routes = [
       {
         path: "fill",
         loadChildren: () => HoursModule,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, HoursGuardService]
       },
       {
         path: "applications",

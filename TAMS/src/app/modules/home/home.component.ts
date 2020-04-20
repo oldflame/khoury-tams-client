@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
-    console.log(this.currentUser);
   }
 
   ngOnInit(): void {
