@@ -8,6 +8,6 @@ export class ProfileService {
   constructor() { }
 
   getUserById = (userId) =>
-  fetch(`http://localhost:7000/users/${userId}`)
+  fetch(`https://khoury-tams.herokuapp.com/users/${userId}`)
     .then(response => response.json())
 }

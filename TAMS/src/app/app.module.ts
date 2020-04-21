@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MaterialModule } from "./material.modules";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent],
@@ -32,6 +34,7 @@ import { MaterialModule } from "./material.modules";
     MatButtonToggleModule,
     MatFormFieldModule,
     MaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {

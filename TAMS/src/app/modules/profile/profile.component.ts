@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
     if (!this.editing) {
       this.router.navigate([`/profile/${this.loggedInUser._id}`]);
     } else {
-      fetch(`http://localhost:7000/profile/${this.loggedInUser._id}`, {
+      fetch(`https://khoury-tams.herokuapp.com/profile/${this.loggedInUser._id}`, {
         method: "PUT",
         body: JSON.stringify(this.loggedInUser),
         headers: {

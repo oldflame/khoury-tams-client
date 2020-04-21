@@ -47,7 +47,7 @@ export class CourseReviewComponent implements OnInit {
   }
 
   getReviews() {
-    fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`).then(
+    fetch(`https://khoury-tams.herokuapp.com/course/${this.review.courseId}/reviews`).then(
       async (response) => {
         this.allReviews = await response.json();
         // console.log(this.allReviews);
@@ -57,7 +57,7 @@ export class CourseReviewComponent implements OnInit {
 
   submitReview() {
     console.log(this.review);
-    fetch(`http://localhost:7000/course/${this.review.courseId}/reviews`, {
+    fetch(`https://khoury-tams.herokuapp.com/course/${this.review.courseId}/reviews`, {
       method: "POST",
       body: JSON.stringify(this.review),
       headers: {

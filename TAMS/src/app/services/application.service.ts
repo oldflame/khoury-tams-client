@@ -13,7 +13,7 @@ export class ApplicationService {
   applications$: Observable<Application[]> = this.applicationSubject.asObservable();
 
   getAllApplications = () =>
-    fetch(`http://localhost:7000/applications`)
+    fetch(`https://khoury-tams.herokuapp.com/applications`)
       .then(response => response.json())
 
 

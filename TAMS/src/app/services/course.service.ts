@@ -132,14 +132,14 @@ export class CourseService {
 @Injectable()
 export class CustomCourseService {
   getAllCourses = () =>
-    fetch(`http://localhost:7000/courses`)
+    fetch(`https://khoury-tams.herokuapp.com/courses`)
       .then(response => response.json())
 
-  getCourseById = (id) => 
-    fetch(`http://localhost:7000/course/${id}`)
+  getCourseById = (id) =>
+    fetch(`https://khoury-tams.herokuapp.com/course/${id}`)
       .then(response => response.json())
 
   getCourseDetails = (CRN) =>
-    fetch(`http://localhost:7000/courses/details/${CRN}`)
+    fetch(`https://khoury-tams.herokuapp.com/courses/details/${CRN}`)
       .then(response => response.json())
 }
