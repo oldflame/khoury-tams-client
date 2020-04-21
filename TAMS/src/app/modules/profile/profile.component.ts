@@ -3,8 +3,7 @@ import { UserService } from "../../services/user.service";
 import { ProfileService } from "../../services/profile.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "src/app/models/user";
-import * as _ from 'lodash';
-
+import * as _ from "lodash";
 
 @Component({
   selector: "profile",
@@ -47,6 +46,8 @@ export class ProfileComponent implements OnInit {
     this.userService.findUserById(this.userId).subscribe((user) => {
       this.allDataForCurrentUser = user;
     });
+
+    this.currentUser = JSON.parse(this.userService.getUserData());
   }
 
   clicked() {
@@ -85,7 +86,15 @@ export class ProfileComponent implements OnInit {
     }
     this.currentUser.following.push($event.user._id);
     this.currentUser.following = _.uniq(this.currentUser.following);
-    this.userService.followUser(this.currentUser, this.followedUser).subscribe();
+    this.userService
+      .followUser(this.currentUser, this.followedUser)
+      .subscribe((res: boolean) => {
+        if (res) {
+          this.userService.findUserById(this.userId).subscribe((user) => {
+            this.allDataForCurrentUser = user;
+          });
+        }
+      });
   }
   unFollowUser($event: any) {
     const followedUserIndex = this.currentUser.following.indexOf(
@@ -102,6 +111,14 @@ export class ProfileComponent implements OnInit {
       $event.user.followers.splice(followingUserIndex, 1);
     }
     this.followedUser = $event.user;
-    this.userService.unFollowUser(this.currentUser, this.followedUser).subscribe();
+    this.userService
+      .unFollowUser(this.currentUser, this.followedUser)
+      .subscribe((res: boolean) => {
+        if (res) {
+          this.userService.findUserById(this.userId).subscribe((user) => {
+            this.allDataForCurrentUser = user;
+          });
+        }
+      });
   }
 }
