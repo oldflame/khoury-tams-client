@@ -94,6 +94,22 @@ export class UserService {
     return user;
   }
 
+  findUserById(userId: string) {
+    return this.dataService.sendGET(`/users/${userId}`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status == 200) {
+          return (res.body);
+        } else {
+          return null;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(null);
+      })
+    );
+  }
+
   followUser(currentUser: User, followedUser: User) {
     const reqBody = { currentUser, followedUser };
     return this.dataService.sendPUT(`/followUser`, reqBody).pipe(

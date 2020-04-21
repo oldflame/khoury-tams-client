@@ -38,6 +38,7 @@ export class UsersListComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.usersList && changes.usersList.currentValue != null) {
       this.currentUser = JSON.parse(this.userService.getUserData());
+      console.log("users", changes.usersList.currentValue);
     }
   }
   followUserClicked(user: User) {

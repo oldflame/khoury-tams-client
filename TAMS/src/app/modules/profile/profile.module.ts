@@ -5,9 +5,10 @@ import { RouterModule } from "@angular/router";
 import { ProfileRoutes } from "./profile.routing";
 import { MaterialModule } from 'src/app/material.modules';
 import { FormsModule } from '@angular/forms';
+import { ListsModule } from '../lists/lists.module';
 
 @NgModule({
   declarations: [ProfileComponent],
-  imports: [CommonModule, RouterModule.forChild(ProfileRoutes), MaterialModule, FormsModule],
+  imports: [CommonModule, RouterModule.forChild(ProfileRoutes), MaterialModule, FormsModule, ListsModule],
 })
 export class ProfileModule {}

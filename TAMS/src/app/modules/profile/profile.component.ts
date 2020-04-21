@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../services/user.service";
 import { ProfileService } from "../../services/profile.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { User } from "src/app/models/user";
+import * as _ from 'lodash';
+
 
 @Component({
   selector: "profile",
@@ -25,6 +28,9 @@ export class ProfileComponent implements OnInit {
   };
   editing = false;
   userId: "";
+  allDataForCurrentUser: any;
+  currentUser: User;
+  followedUser: User;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -36,7 +42,10 @@ export class ProfileComponent implements OnInit {
     });
     this.userId = JSON.parse(this.userService.getUserData())._id;
     this.profileService.getUserById(this.userId).then((user) => {
-      this.loggedInUser = user[0];
+      this.loggedInUser = user;
+    });
+    this.userService.findUserById(this.userId).subscribe((user) => {
+      this.allDataForCurrentUser = user;
     });
   }
 
@@ -60,5 +69,39 @@ export class ProfileComponent implements OnInit {
         });
       this.router.navigate(["/profile"]);
     }
+  }
+  followUser($event: any) {
+    console.log($event.user);
+    if (!$event.user.followers) {
+      // tslint:disable-next-line:no-string-literal
+      $event.user["followers"] = [];
+    }
+    $event.user.followers.push(this.currentUser._id);
+    $event.user.followers = _.uniq($event.user.followers);
+
+    this.followedUser = $event.user;
+    if (!this.currentUser.following) {
+      this.currentUser.following = [];
+    }
+    this.currentUser.following.push($event.user._id);
+    this.currentUser.following = _.uniq(this.currentUser.following);
+    this.userService.followUser(this.currentUser, this.followedUser).subscribe();
+  }
+  unFollowUser($event: any) {
+    const followedUserIndex = this.currentUser.following.indexOf(
+      $event.user._id
+    );
+    if (followedUserIndex != -1) {
+      this.currentUser.following.splice(followedUserIndex, 1);
+    }
+
+    const followingUserIndex = $event.user.followers.indexOf(
+      this.currentUser._id
+    );
+    if (followedUserIndex != -1) {
+      $event.user.followers.splice(followingUserIndex, 1);
+    }
+    this.followedUser = $event.user;
+    this.userService.unFollowUser(this.currentUser, this.followedUser).subscribe();
   }
 }

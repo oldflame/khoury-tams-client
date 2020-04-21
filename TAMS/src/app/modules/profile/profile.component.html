@@ -50,4 +50,21 @@
       </div>
     </div>
   </form>
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+      <mat-tab-group>
+        <mat-tab label="Followers">
+          <ng-template matTabContent>
+            <users-list *ngIf="allDataForCurrentUser?.followers && allDataForCurrentUser?.followers.length > 0" [usersList]="allDataForCurrentUser?.followers" (followUser)="followUser($event)" (unFollowUser)="unFollowUser($event)"></users-list>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Following">
+          <ng-template matTabContent>
+            <users-list *ngIf="allDataForCurrentUser?.following && allDataForCurrentUser?.following.length > 0" [usersList]="allDataForCurrentUser?.following" (followUser)="followUser($event)" (unFollowUser)="unFollowUser($event)">
+            </users-list>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
 </div>
