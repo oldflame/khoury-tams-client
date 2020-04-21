@@ -31,7 +31,7 @@ export class MainNavbarComponent implements OnInit {
     {
 
       viewValue: "Profile",
-      route: "/profile"
+      route: "/account/profile"
     },
     {
       viewValue: "Users",
