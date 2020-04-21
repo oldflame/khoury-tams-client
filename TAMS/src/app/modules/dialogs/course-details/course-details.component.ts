@@ -12,7 +12,7 @@ import {Course} from "src/app/models/course";
 })
 export class CourseDetailsComponent implements AfterViewInit {
   CRN: string;
-  courseDetails$: Observable<Course>;
+  courseDetails: Course;
   constructor(
     private dialogRef: MatDialogRef<CourseDetailsComponent>,
     private coursesService: CourseService,
@@ -22,7 +22,10 @@ export class CourseDetailsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.CRN = this.dialogData.CRN;
-    this.courseDetails$ = this.coursesService.courseDetails$;
+    this.coursesService.courseDetails$.subscribe((course: Course) => {
+      console.log("in details", course);
+      this.courseDetails = course;
+    });
     this.coursesService.getCourseDetails(this.CRN).subscribe();
   }
 }

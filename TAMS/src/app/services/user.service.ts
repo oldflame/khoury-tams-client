@@ -85,7 +85,6 @@ export class UserService {
   }
 
   isAuthenticated(): boolean {
-    console.log("is auth", this.secureStorageService.getValue("token"));
     return this.secureStorageService.getValue("token") !== "";
   }
 

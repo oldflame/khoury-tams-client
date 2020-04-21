@@ -70,8 +70,9 @@ export class CoursesListComponent implements OnInit, OnChanges {
     }
   }
 
-  onCourseRowClicked(CRN: string) {
+  onCourseRowClicked($event, CRN: string) {
     this.viewDetails.emit({ CRN });
+    $event.stopPropagation();
   }
 
   assignProfessorClicked(event: any, course: Course) {
