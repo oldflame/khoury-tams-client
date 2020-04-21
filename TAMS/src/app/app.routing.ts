@@ -10,6 +10,7 @@ import { HoursModule } from "./modules/hours/hours.module";
 import { HoursGuardService } from "./services/hours-guard.service";
 import { UsersModule } from "./modules/users/users.module";
 import { ProfileModule } from "./modules/profile/profile.module";
+import { CourseReviewModule } from './modules/course-review/course-review.module';
 
 export const AppRoutes: Routes = [
   {
@@ -46,6 +47,11 @@ export const AppRoutes: Routes = [
         loadChildren: () => ProfileModule,
         canActivate: [AuthGuardService],
       },
+      {
+        path: "course",
+        loadChildren: () => CourseReviewModule,
+        canActivate: [AuthGuardService],
+      }
     ],
   },
   {

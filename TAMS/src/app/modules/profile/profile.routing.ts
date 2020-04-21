@@ -6,8 +6,17 @@ export const ProfileRoutes: Routes = [
     children: [
       {
         path: "",
-        component: ProfileComponent
-      }
-    ]
-  }
+        component: ProfileComponent,
+      },
+    ],
+  },
+  {
+    path: ":profileId",
+    children: [
+      {
+        path: "",
+        component: ProfileComponent,
+      },
+    ],
+  },
 ];
