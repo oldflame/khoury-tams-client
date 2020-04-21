@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import {
   HttpClient,
   HttpResponse,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from "@angular/common/http";
 import { DataService } from "./data.service";
 import { User } from "../models/user";
@@ -11,7 +11,7 @@ import { of, BehaviorSubject, Observable } from "rxjs";
 import { SecureStorageService } from "./secure-storage.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class UserService {
   constructor(
@@ -91,5 +91,44 @@ export class UserService {
   getUserData() {
     const user = this.secureStorageService.getValue("user");
     return user;
+  }
+
+  followUser(currentUser: User, followedUser: User) {
+    const reqBody = { currentUser, followedUser };
+    return this.dataService.sendPUT(`/followUser`, reqBody).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.secureStorageService.removeKey("user");
+          this.secureStorageService.setValue("user", JSON.stringify(currentUser));
+          console.log("Post local update", this.getUserData().following);
+          this.getAllUsers().subscribe();
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  unFollowUser(currentUser: User, followedUser: User) {
+    const reqBody = { currentUser, followedUser };
+    return this.dataService.sendPUT(`/unFollowUser`, reqBody).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.secureStorageService.removeKey("user");
+          this.secureStorageService.setValue("user", JSON.stringify(currentUser));
+          this.getAllUsers().subscribe();
+        }
+        return res.status == 200;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
   }
 }

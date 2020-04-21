@@ -5,12 +5,13 @@
         <mat-tab-group (selectedTabChange)="tabChanged($event)">
           <mat-tab label="Students">
             <ng-template matTabContent>
-              <users-list [usersList]="students"></users-list>
+              <users-list [usersList]="students" (followUser)="followUser($event)" (unFollowUser)="unFollowUser($event)"></users-list>
             </ng-template>
           </mat-tab>
           <mat-tab label="Professors">
             <ng-template matTabContent>
-              <users-list [usersList]="faculty"></users-list>
+              <users-list [usersList]="faculty" (followUser)="followUser($event)" (unFollowUser)="unFollowUser($event)">
+              </users-list>
             </ng-template>
           </mat-tab>
         </mat-tab-group>

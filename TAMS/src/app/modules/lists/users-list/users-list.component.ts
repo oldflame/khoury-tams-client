@@ -15,6 +15,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { FormControl } from "@angular/forms";
 import { User } from "src/app/models/user";
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: "users-list",
@@ -23,8 +24,22 @@ import { User } from "src/app/models/user";
 })
 export class UsersListComponent implements OnInit {
   @Input("usersList") usersList: User[];
-  constructor() {}
+  @Output("followUser") followUser = new EventEmitter();
+  @Output("unFollowUser") unFollowUser = new EventEmitter();
+
+  currentUser: User;
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
+    this.currentUser = JSON.parse(this.userService.getUserData());
+
+  }
+  followUserClicked(user: User) {
+    this.followUser.emit({ user });
+  }
+  unFollowUserClicked(user: User) {
+    this.unFollowUser.emit({ user });
   }
 }

@@ -3,8 +3,12 @@
     <mat-icon mat-list-icon>person</mat-icon>
     <div mat-line>{{user.firstName}} {{user.lastName}}</div>
     <div mat-line> {{user.email}} </div>
-    <button color="primary" *ngIf="$index% 2 == 0" mat-stroked-button matTooltip="Follow {{ user.firstName}}" matTooltipPosi1tion="below">Follow</button>
-    <button color="primary" *ngIf="$index% 2 != 0" mat-raised-button matTooltip="Unfollow {{ user.firstName}}" matTooltipPosi1tion="below">Following</button>
+    <button color="primary" *ngIf="currentUser.following?.indexOf(user._id)==-1" mat-stroked-button
+      matTooltip="Follow {{ user.firstName}}" matTooltipPosi1tion="below"
+      (click)="followUserClicked(user)">Follow</button>
+    <button color="primary" *ngIf="currentUser.following?.indexOf(user._id)!=-1" mat-raised-button
+      matTooltip="Unfollow {{ user.firstName}}" matTooltipPosi1tion="below"
+      (click)="unFollowUserClicked(user)">Following</button>
   </mat-list-item>
   <mat-divider></mat-divider>
 </mat-list>
