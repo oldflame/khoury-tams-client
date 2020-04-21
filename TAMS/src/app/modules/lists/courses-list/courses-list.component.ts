@@ -22,11 +22,18 @@ import { FormControl } from "@angular/forms";
 })
 export class CoursesListComponent implements OnInit, OnChanges {
   @Input("coursesList") coursesList: Course[];
-
+  @Input("enableShowAction") enableShowAction: boolean;
+  @Input("showReviewButton") showReviewButton: boolean;
   @Output("viewDetails") viewDetails = new EventEmitter();
   @Output("assignProfessor") assignProfessor = new EventEmitter();
 
-  displayedColumns: string[] = ["Title", "Course", "CRN", "Instructors"];
+  displayedColumns: string[] = [
+    "Title",
+    "Course",
+    "CRN",
+    "Instructors",
+    "Review",
+  ];
   dataSource: MatTableDataSource<Course>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   showActionsControl = new FormControl(false);
@@ -63,13 +70,14 @@ export class CoursesListComponent implements OnInit, OnChanges {
     }
   }
 
-  onCourseRowClicked(CRN: string) {
+  onCourseRowClicked($event, CRN: string) {
     this.viewDetails.emit({ CRN });
+    $event.stopPropagation();
   }
 
   assignProfessorClicked(event: any, course: Course) {
     this.assignProfessor.emit({
-      course
+      course,
     });
     event.stopPropagation();
   }

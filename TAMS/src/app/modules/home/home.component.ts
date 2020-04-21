@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course";
@@ -10,6 +11,10 @@ import { SelectProfessorComponent } from "../dialogs/select-professor/select-pro
 import { Professor } from "src/app/models/professor";
 import { switchMap } from "rxjs/operators";
 import { AddCourseComponent } from "../dialogs/add-course/add-course.component";
+import { SecureStorageService } from "src/app/services/secure-storage.service";
+import { User } from "src/app/models/user";
+import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: "home",
@@ -20,15 +25,28 @@ export class HomeComponent implements OnInit {
   courses$: Observable<Course[]>;
   dialogRef;
   selectedTab: number;
-
+  currentUser: User;
+  searchTerms: string[] = [];
   constructor(
+    private secureStorageService: SecureStorageService,
     private courseService: CourseService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    public userService: UserService
+  ) {
+
+    if (this.userService.isAuthenticated()) {
+      this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
+    }
+  }
 
   ngOnInit(): void {
     this.courses$ = this.courseService.courses$;
     this.getCoursesByStream("1");
+  }
+
+  searchTextChanged(eventArgs) {
+    this.searchTerms = eventArgs.searchTerms;
+    console.log("Search for", this.searchTerms);
   }
 
   getCoursesByStream(stream: string) {

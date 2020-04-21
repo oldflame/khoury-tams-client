@@ -6,17 +6,20 @@ import { HomeRoutes } from './home.routing';
 import { MaterialModule } from 'src/app/material.modules';
 import { ListsModule } from '../lists/lists.module';
 import { DialogsModule } from '../dialogs/dialogs.module';
+import { SharedModule } from '../shared/shared.module';
+import { CoursesFilterPipe } from 'src/app/pipes/courses-filter.pipe';
 
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, CoursesFilterPipe],
   imports: [
     CommonModule,
     RouterModule.forChild(HomeRoutes),
     MaterialModule,
     ListsModule,
-    DialogsModule
+    DialogsModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

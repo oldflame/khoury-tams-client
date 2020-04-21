@@ -1,0 +1,73 @@
+<div class="container">
+  <h2 class="text-center top-margin">User Profile</h2>
+  <form class="form">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First Name" name="firstName" [(ngModel)]="loggedInUser.firstName"
+            [disabled]="editing ? false : true">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Last Name" name="lastName" [disabled]="editing ? false : true"
+            [(ngModel)]="loggedInUser.lastName">
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput placeholder="Phone Number" name="phoneNumber" [disabled]="editing ? false : true"
+            [(ngModel)]=loggedInUser.phoneNumber>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [disabled]="true" [(ngModel)]="loggedInUser.email"
+            name="email">
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Logged in as</mat-label>
+          <input matInput placeholder="loggedInAs" [disabled]="true" [(ngModel)]="loggedInUser.role"
+            name="role">
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <div class="row my-3">
+      <div class="col-12 text-center">
+        <button mat-raised-button color="primary" (click)="clicked()">Update</button>
+        <button mat-icon-button *ngIf="!editing" color="primary" (click)="editing = true">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+      <mat-tab-group>
+        <mat-tab label="Followers">
+          <ng-template matTabContent>
+            <users-list *ngIf="allDataForCurrentUser?.followers && allDataForCurrentUser?.followers.length > 0" [usersList]="allDataForCurrentUser?.followers" (followUser)="followUser($event)" (unFollowUser)="unFollowUser($event)"></users-list>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Following">
+          <ng-template matTabContent>
+            <users-list *ngIf="allDataForCurrentUser?.following && allDataForCurrentUser?.following.length > 0" [usersList]="allDataForCurrentUser?.following" (followUser)="followUser($event)" (unFollowUser)="unFollowUser($event)">
+            </users-list>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

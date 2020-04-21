@@ -1,1 +1,40 @@
-{{ courseDetails$ | async | json }}
+<h3 mat-dialog-title>{{ courseDetails?.Course }} - {{ courseDetails?.Title }}</h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h4>Instructors</h4>
+      <p>{{ courseDetails?.Instructors }}</p>
+    </div>
+    <div class="col-12 col-md-6">
+      <h4>CRN</h4>
+      <p>{{ courseDetails?.CRN }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h4>Method</h4>
+      <p>{{ courseDetails?.Method }}</p>
+    </div>
+    <div class="col-12 col-md-6">
+      <h4>Stream</h4>
+      <p>{{ courseDetails?.stream }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <h4>Enrollment</h4>
+      <p>{{ courseDetails?.Enrollment }}</p>
+    </div>
+    <div class="col-12 col-md-4">
+      <h4>Capacity</h4>
+      <p>{{ courseDetails?.Capacity }}</p>
+    </div>
+    <div class="col-12 col-md-4">
+      <h4>Waitlist</h4>
+      <p>{{ courseDetails?.Waitlist || "N/A" }}</p>
+    </div>
+  </div>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" mat-dialog-close class="mb-3">Done</button>
+</mat-dialog-actions>

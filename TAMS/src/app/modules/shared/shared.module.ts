@@ -4,19 +4,24 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 import { MaterialModule } from 'src/app/material.modules';
+import { SearchComponent } from './search/search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent, MainNavbarComponent],
+  declarations: [NavbarComponent, MainNavbarComponent, SearchComponent],
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    SearchComponent
   ]
 })
 export class SharedModule { }

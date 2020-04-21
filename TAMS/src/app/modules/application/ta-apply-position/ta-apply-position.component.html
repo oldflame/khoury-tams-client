@@ -61,7 +61,8 @@
     </div>
     <div class="row my-3">
       <div class="col-12 text-center">
-        <button mat-raised-button color="primary" [disabled]="applicationForm.invalid" (click)="submitApplication(applicationForm)">{{ applicationForm.value._id ? "Update" : "Submit" }}</button>
+        <button mat-raised-button color="primary" [disabled]="applicationForm.invalid"
+          (click)="submitApplication(applicationForm)">{{ applicationForm.value._id ? "Update" : "Submit" }}</button>
       </div>
     </div>
   </form>

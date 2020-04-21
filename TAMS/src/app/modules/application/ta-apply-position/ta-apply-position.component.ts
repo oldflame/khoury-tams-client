@@ -47,11 +47,15 @@ export class TaApplyPositionComponent implements OnInit {
         this.coursesTitleArray = _.uniq(courses.map((course) => course.Title));
       }
     });
-    this.applicationService.applications$.subscribe((applications: Application[]) => {
-      if (applications && applications.length > 0) {
-        this.applicationForms = applications.map((application: Application) => this.getApplicationForm(application));
+    this.applicationService.applications$.subscribe(
+      (applications: Application[]) => {
+        if (applications && applications.length > 0) {
+          this.applicationForms = applications.map((application: Application) =>
+            this.getApplicationForm(application)
+          );
+        }
       }
-    });
+    );
     this.applicationService
       .getApplicationsForStudent(JSON.parse(this.userService.getUserData())._id)
       .subscribe();
@@ -69,12 +73,18 @@ export class TaApplyPositionComponent implements OnInit {
     ).lastName;
     applicationData.email = JSON.parse(this.userService.getUserData()).email;
     applicationData.studentId = JSON.parse(this.userService.getUserData())._id;
-
     applicationData.status = "Applied";
-
     applicationData = _.omit(applicationData, '_id');
     console.log(applicationData);
-    this.applicationService.sendApplication(applicationData).subscribe();
+    if (applicationData._id) {
+      console.log("Updating", applicationData._id);
+      this.applicationService
+        .updateApplicationForStudent(applicationData)
+        .subscribe();
+    } else {
+      applicationData = _.omit(applicationData, "_id");
+      this.applicationService.sendApplication(applicationData).subscribe();
+    }
   }
 
   getApplicationForm(application?: Application): FormGroup {

@@ -11,11 +11,11 @@ export class SecureStorageService {
   }
 
   setValue(key: string, value: any): void {
+    console.log("Writing to ls", key, value);
     this.ls.set(key, value);
   }
 
   getValue(key: string): any {
-    console.log(key, this.ls.get(key));
     return this.ls.get(key);
   }
 
