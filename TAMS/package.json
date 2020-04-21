@@ -26,6 +26,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "ngx-moment": "^3.5.0",
+    "node-modules": "^1.0.1",
     "rxjs": "~6.5.4",
     "secure-ls": "^1.2.6",
     "tslib": "^1.10.0",

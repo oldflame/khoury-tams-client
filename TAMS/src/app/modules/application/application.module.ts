@@ -7,6 +7,7 @@ import { TaApplyPositionComponent } from "./ta-apply-position/ta-apply-position.
 import { ApplicationRoutes } from './application.routing';
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from 'src/app/material.modules';
+import { ProfessorRetrieveApplicationsComponent } from './professor-retrieve-applications/professor-retrieve-applications.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { MaterialModule } from 'src/app/material.modules';
     ApplicationsComponent,
     TaAcceptPositionComponent,
     TaApplyPositionComponent,
+    ProfessorRetrieveApplicationsComponent,
   ],
   imports: [
     CommonModule,

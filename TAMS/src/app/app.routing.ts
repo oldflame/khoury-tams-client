@@ -1,3 +1,4 @@
+import { ProfessorRetrieveApplicationsComponent } from './modules/application/professor-retrieve-applications/professor-retrieve-applications.component';
 import { AuthLayoutComponent } from "./layout/auth-layout/auth-layout.component";
 import { Routes } from "@angular/router";
 import { AuthModule } from "./modules/auth/auth.module";
@@ -41,7 +42,12 @@ export const AppRoutes: Routes = [
       {
         path: "applications",
         loadChildren: () => ApplicationModule,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "ta-applications",
+        loadChildren: () => ApplicationModule,
+        canActivate: [AuthGuardService]
       },
       {
         path: "follow-users",
