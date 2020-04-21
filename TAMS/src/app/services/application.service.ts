@@ -35,7 +35,7 @@ export class ApplicationService {
       })
     );
   }
-  
+
   updateApplicationForStudent(application: any) {
     return this.dataService.sendPUT("/updateApplication", {application}).pipe(
       map((res: HttpResponse<any>) => {
@@ -59,9 +59,9 @@ export class ApplicationService {
       })
     );
   }
-  
-  getApplicationsForStudent(studentId: string) {
-    return this.dataService.sendGET(`/getSubmittedApplication/${studentId}`).pipe(
+
+  // getApplicationsForStudent(studentId: string) {
+    // return this.dataService.sendGET(`/getSubmittedApplication/${studentId}`).pipe(
 //   updateApplicationForStudent(application: any) {
 //     return this.dataService.sendPUT("/updateApplication", {application}).pipe(
 //       map((res: HttpResponse<any>) => {
@@ -85,7 +85,7 @@ export class ApplicationService {
 //       })
 //     );
 //   }
-  
+
   // updateApplication(application: Application): Observable<boolean> {
   //   return this.dataService.sendPUT(`/updateApplication`, application).pipe(
   //     map((res: HttpResponse<any>) => {

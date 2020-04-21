@@ -42,6 +42,7 @@ export class UsersComponent implements OnInit {
     this.users$ = this.userService.users$;
     this.userService.getAllUsers().subscribe();
     this.users$.subscribe((users) => {
+      console.log("Users", users);
       if (users) {
         this.students = [];
         users.forEach((user) => {

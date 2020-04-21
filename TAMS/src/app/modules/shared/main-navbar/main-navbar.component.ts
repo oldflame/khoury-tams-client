@@ -3,6 +3,7 @@ import { Router, NavigationStart, NavigationEnd } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { SecureStorageService } from "src/app/services/secure-storage.service";
 import { User } from "src/app/models/user";
+import * as _ from "lodash";
 
 @Component({
   selector: "main-navbar",
@@ -36,8 +37,9 @@ export class MainNavbarComponent implements OnInit {
     },
     {
       viewValue: "TA Applications",
-      route: "/account/ta-applications/view"
-    },{
+      route: "/account/ta-applications/view",
+    },
+    {
       viewValue: "Profile",
       route: "/account/profile",
     },
@@ -62,6 +64,11 @@ export class MainNavbarComponent implements OnInit {
         viewValue: "Hours",
         route: "/account/fill",
       });
+
+      this.links.splice(
+        _.findIndex(this.links, { viewValue: "TA Applications" }),
+        1
+      );
     }
 
     if (this.currentUser && this.currentUser.role == "Faculty") {
