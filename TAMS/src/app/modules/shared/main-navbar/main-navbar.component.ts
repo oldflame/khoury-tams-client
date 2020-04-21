@@ -16,7 +16,9 @@ export class MainNavbarComponent implements OnInit {
     private userService: UserService,
     private secureStorageService: SecureStorageService
   ) {
-    this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
+    if (this.userService.isAuthenticated()) {
+      this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
+    }
   }
   activeLink: string;
   links = [
@@ -33,14 +35,13 @@ export class MainNavbarComponent implements OnInit {
       route: "/account/applications",
     },
     {
-
       viewValue: "Profile",
-      route: "/account/profile"
+      route: "/account/profile",
     },
     {
       viewValue: "Users",
       route: "/account/follow-users",
-    }
+    },
   ];
 
   ngOnInit(): void {
@@ -53,11 +54,15 @@ export class MainNavbarComponent implements OnInit {
 
     this.activeLink = this.router.url;
 
-    if (this.currentUser.role == "Student") {
+    if (this.currentUser && this.currentUser.role == "Student") {
       this.links.splice(2, 0, {
         viewValue: "Hours",
         route: "/account/fill",
       });
+    }
+
+    if (this.currentUser && this.currentUser.role == "Faculty") {
+      this.links.splice(2, 1);
     }
   }
 

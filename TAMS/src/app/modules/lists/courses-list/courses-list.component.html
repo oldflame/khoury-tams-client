@@ -36,7 +36,7 @@
     <!-- Review Column -->
     <ng-container matColumnDef="Review">
       <th mat-header-cell *matHeaderCellDef> Course Review </th>
-      <td mat-cell *matCellDef="let element"> <a routerLink="/account/course/{{element._id}}"> Review </a> </td>
+      <td mat-cell *matCellDef="let element"> <a *ngIf="showReviewButton" routerLink="/account/course/{{element._id}}"> Review </a> </td>
     </ng-container>
 
   <ng-container matColumnDef="actions">

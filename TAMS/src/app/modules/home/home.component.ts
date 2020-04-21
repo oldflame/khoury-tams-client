@@ -13,6 +13,7 @@ import { switchMap } from "rxjs/operators";
 import { AddCourseComponent } from "../dialogs/add-course/add-course.component";
 import { SecureStorageService } from "src/app/services/secure-storage.service";
 import { User } from "src/app/models/user";
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -28,10 +29,13 @@ export class HomeComponent implements OnInit {
   constructor(
     private secureStorageService: SecureStorageService,
     private courseService: CourseService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public userService: UserService
   ) {
 
-    this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
+    if (this.userService.isAuthenticated()) {
+      this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
+    }
   }
 
   ngOnInit(): void {

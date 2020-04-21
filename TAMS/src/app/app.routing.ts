@@ -31,7 +31,7 @@ export const AppRoutes: Routes = [
       {
         path: "home",
         loadChildren: () => HomeModule,
-        canActivate: [AuthGuardService],
+        canActivate: [],
       },
       {
         path: "fill",

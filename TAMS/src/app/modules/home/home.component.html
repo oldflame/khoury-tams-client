@@ -5,7 +5,7 @@
         <mat-tab-group (selectedTabChange)="tabChanged($event)">
           <mat-tab label="Masters in Computer Science">
             <ng-template matTabContent>
-              <courses-list [enableShowAction]="currentUser.role=='admin'"[coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)'
+              <courses-list [showReviewButton]="userService.isAuthenticated()"[enableShowAction]="currentUser?.role=='admin'"[coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)'
                 (viewDetails)="showCourseDetails($event)"> </courses-list>
             </ng-template>
           </mat-tab>
@@ -32,7 +32,7 @@
     </div>
   </div>
 </div>
-<button mat-fab color="primary" class="fab" (click)=showAddCourseDialog()>
+<button mat-fab color="primary" class="fab" *ngIf="currentUser && currentUser.role=='admin'" (click)=showAddCourseDialog()>
   <mat-icon >
     add
   </mat-icon>
