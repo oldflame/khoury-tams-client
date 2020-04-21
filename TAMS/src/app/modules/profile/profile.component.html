@@ -46,7 +46,10 @@
 
     <div class="row my-3">
       <div class="col-12 text-center">
-        <button mat-raised-button color="primary" (click)="clicked()">{{ !editing ? "Update" : "Submit" }}</button>
+        <button mat-raised-button color="primary" (click)="clicked()">Update</button>
+        <button mat-icon-button *ngIf="!editing" color="primary" (click)="editing = true">
+          <mat-icon>edit</mat-icon>
+        </button>
       </div>
     </div>
   </form>

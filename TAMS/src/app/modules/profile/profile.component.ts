@@ -34,9 +34,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       if (params.profileId != null) {
-        this.editing = true;
-      } else {
-        this.editing = false;
       }
     });
     this.userId = JSON.parse(this.userService.getUserData())._id;
@@ -68,7 +65,9 @@ export class ProfileComponent implements OnInit {
           this.loggedInUser = updatedUser;
           console.log(this.loggedInUser);
         });
-      this.router.navigate(["/profile"]);
+
+      this.editing = false;
+      // this.router.navigate(["/profile"]);
     }
   }
   followUser($event: any) {
