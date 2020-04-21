@@ -29,6 +29,11 @@ export class MainNavbarComponent implements OnInit {
       route: "/account/applications",
     },
     {
+
+      viewValue: "Profile",
+      route: "/profile"
+    },
+    {
       viewValue: "Users",
       route: "/account/follow-users",
     }

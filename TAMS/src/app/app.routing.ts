@@ -3,11 +3,13 @@ import {Routes} from "@angular/router";
 import {AuthModule} from './modules/auth/auth.module';
 import {HomeModule} from './modules/home/home.module';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
+
 import { AuthGuardService } from './services/auth-guard.service';
 import { ApplicationModule } from './modules/application/application.module';
 import { HoursModule } from './modules/hours/hours.module';
 import { HoursGuardService } from './services/hours-guard.service';
 import { UsersModule } from './modules/users/users.module';
+
 
 export const AppRoutes: Routes = [
   {
@@ -60,5 +62,18 @@ export const AppRoutes: Routes = [
         loadChildren: () => ApplicationModule
       }
     ]
+  },
+  {
+    path: "profile",
+    component: ProfileComponent
+  },
+  {
+    path: "profile/:profileId",
+    component: ProfileComponent
+  },
+  {
+    path: "course/:courseId/reviews",
+    component: CourseReviewComponent
   }
+
 ];

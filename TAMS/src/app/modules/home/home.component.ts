@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "src/app/services/course.service";
 import { Course } from "src/app/models/course";
@@ -12,6 +13,7 @@ import { switchMap } from "rxjs/operators";
 import { AddCourseComponent } from "../dialogs/add-course/add-course.component";
 import { SecureStorageService } from "src/app/services/secure-storage.service";
 import { User } from "src/app/models/user";
+
 
 @Component({
   selector: "home",
@@ -28,6 +30,7 @@ export class HomeComponent implements OnInit {
     private courseService: CourseService,
     private dialog: MatDialog
   ) {
+
     this.currentUser = JSON.parse(this.secureStorageService.getValue("user"));
   }
 

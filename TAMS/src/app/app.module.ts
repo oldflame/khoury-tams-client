@@ -15,9 +15,14 @@ import {CustomCourseService} from "./services/course.service";
 import {ApplicationService} from "./services/application.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {ProfileComponent} from './modules/profile/profile.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MaterialModule} from "./material.modules";
+import { CourseReviewComponent } from './modules/course-review/course-review.component';
+import {ProfileService} from "./services/user.service";
 
 @NgModule({
-  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent],
+  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent, ProfileComponent, CourseReviewComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -27,14 +32,18 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MaterialModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
-    multi: true},
+    multi: true
+  },
     CustomCourseService,
-    ApplicationService],
+    ApplicationService,
+    ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
