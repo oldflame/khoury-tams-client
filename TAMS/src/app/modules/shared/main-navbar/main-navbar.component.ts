@@ -21,6 +21,10 @@ export class MainNavbarComponent implements OnInit {
   activeLink: string;
   links = [
     {
+      viewValue: "Feed",
+      route: "/account/feed",
+    },
+    {
       viewValue: "Home",
       route: "/account/home",
     },
@@ -50,7 +54,7 @@ export class MainNavbarComponent implements OnInit {
     this.activeLink = this.router.url;
 
     if (this.currentUser.role == "Student") {
-      this.links.splice(1, 0, {
+      this.links.splice(2, 0, {
         viewValue: "Hours",
         route: "/account/fill",
       });

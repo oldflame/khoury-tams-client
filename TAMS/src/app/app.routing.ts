@@ -11,6 +11,7 @@ import { HoursGuardService } from "./services/hours-guard.service";
 import { UsersModule } from "./modules/users/users.module";
 import { ProfileModule } from "./modules/profile/profile.module";
 import { CourseReviewModule } from './modules/course-review/course-review.module';
+import { FeedModule } from './modules/feed/feed.module';
 
 export const AppRoutes: Routes = [
   {
@@ -22,6 +23,11 @@ export const AppRoutes: Routes = [
     path: "account",
     component: AdminLayoutComponent,
     children: [
+      {
+        path: "feed",
+        loadChildren: () => FeedModule,
+        canActivate: [AuthGuardService],
+      },
       {
         path: "home",
         loadChildren: () => HomeModule,

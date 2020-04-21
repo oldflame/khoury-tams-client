@@ -73,7 +73,7 @@ export class TaApplyPositionComponent implements OnInit {
     applicationData.studentId = JSON.parse(this.userService.getUserData())._id;
     console.log(applicationData);
     if (applicationData._id) {
-      console.log("Updating",applicationData._id);
+      console.log("Updating", applicationData._id);
       this.applicationService
         .updateApplicationForStudent(applicationData)
         .subscribe();
