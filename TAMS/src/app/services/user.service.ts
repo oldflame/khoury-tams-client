@@ -133,3 +133,10 @@ export class UserService {
     );
   }
 }
+
+@Injectable()
+export class ProfileService {
+  getUserById = (userId) =>
+    fetch(`http://localhost:7000/users/${userId}`)
+      .then(response => response.json())
+}

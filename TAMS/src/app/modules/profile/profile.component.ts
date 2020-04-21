@@ -21,18 +21,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  loggedInUser: any = {
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    email: "",
-    role: "",
-  };
+  loggedInUser: any = {firstName: '', lastName: '', phoneNumber: '', email: '', role: ''};
   editing = false;
   userId: "";
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe(params => {
       if (params.profileId != null) {
         this.editing = true;
       } else {
