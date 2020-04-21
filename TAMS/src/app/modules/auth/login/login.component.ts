@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       .loginUser(this.loginForm.value)
       .subscribe((response: boolean) => {
         if (response) {
-          this.router.navigate(["/account/feed"]);
+          this.router.navigate(["/account/home"]);
         } else {
           alert("Invalid Credentials");
         }
