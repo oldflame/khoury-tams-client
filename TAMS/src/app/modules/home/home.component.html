@@ -1,30 +1,35 @@
 <div class="position-relative">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-md-8 offset-md-2">
+      <div class="col-12 col-md-8 offset-md-2 mt-2">
+        <search [placeholder]="'Search Courses ...'" hint="Separate search terms using 'Enter' or 'Comma'"
+          (searchChange)="searchTextChanged($event)">
+        </search>
         <mat-tab-group (selectedTabChange)="tabChanged($event)">
           <mat-tab label="Masters in Computer Science">
             <ng-template matTabContent>
-              <courses-list [showReviewButton]="userService.isAuthenticated()"[enableShowAction]="currentUser?.role=='admin'"[coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)'
-                (viewDetails)="showCourseDetails($event)"> </courses-list>
+              <courses-list [showReviewButton]="userService.isAuthenticated()"
+                [enableShowAction]="currentUser?.role=='admin'"
+                [coursesList]="(courses$ | async | coursesFilter: searchTerms)"
+                (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
             </ng-template>
           </mat-tab>
           <mat-tab label="Masters in Data Science">
             <ng-template matTabContent>
-              <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)'
-                (viewDetails)="showCourseDetails($event)"> </courses-list>
+              <courses-list [coursesList]="(courses$ | async | coursesFilter: searchTerms)"
+                (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
             </ng-template>
           </mat-tab>
           <mat-tab label="Masters in Cyber Security">
             <ng-template matTabContent>
-              <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)'
-                (viewDetails)="showCourseDetails($event)"> </courses-list>
+              <courses-list [coursesList]="(courses$ | async | coursesFilter: searchTerms)"
+                (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
             </ng-template>
           </mat-tab>
           <mat-tab label="Masters in Health Informatics">
             <ng-template matTabContent>
-              <courses-list [coursesList]="courses$ | async" (assignProfessor)='assignProfessor($event)'
-                (viewDetails)="showCourseDetails($event)"> </courses-list>
+              <courses-list [coursesList]="(courses$ | async | coursesFilter: searchTerms)"
+                (assignProfessor)='assignProfessor($event)' (viewDetails)="showCourseDetails($event)"> </courses-list>
             </ng-template>
           </mat-tab>
         </mat-tab-group>
@@ -32,8 +37,9 @@
     </div>
   </div>
 </div>
-<button mat-fab color="primary" class="fab" *ngIf="currentUser && currentUser.role=='admin'" (click)=showAddCourseDialog()>
-  <mat-icon >
+<button mat-fab color="primary" class="fab" *ngIf="currentUser && currentUser.role=='admin'"
+  (click)=showAddCourseDialog()>
+  <mat-icon>
     add
   </mat-icon>
 </button>

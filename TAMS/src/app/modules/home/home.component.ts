@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   dialogRef;
   selectedTab: number;
   currentUser: User;
+  searchTerms: string[] = [];
   constructor(
     private secureStorageService: SecureStorageService,
     private courseService: CourseService,
@@ -41,6 +42,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.courses$ = this.courseService.courses$;
     this.getCoursesByStream("1");
+  }
+
+  searchTextChanged(eventArgs) {
+    this.searchTerms = eventArgs.searchTerms;
+    console.log("Search for", this.searchTerms);
   }
 
   getCoursesByStream(stream: string) {
