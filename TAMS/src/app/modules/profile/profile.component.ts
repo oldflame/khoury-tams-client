@@ -15,16 +15,15 @@ export class ProfileComponent implements OnInit {
               private profileService: ProfileService) {
   }
 
-  loggedInUser: any = {firstName: '', lastName: '', phoneNumber: '', email: '', role:''};
+  loggedInUser: any = {firstName: '', lastName: '', phoneNumber: '', email: '', role: ''};
   editing = false;
   userId: '';
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if(params.profileId != null) {
+      if (params.profileId != null) {
         this.editing = true;
-      }
-      else {
+      } else {
         this.editing = false;
       }
     });
@@ -48,7 +47,7 @@ export class ProfileComponent implements OnInit {
         }
       }).then(response => {
         console.log("I'm here")
-        console.log(response.json())
+        console.log(response.json());
       })
         .then(updatedUser => {
           this.loggedInUser = updatedUser;

@@ -4,11 +4,13 @@ import {AuthModule} from './modules/auth/auth.module';
 import {HomeModule} from './modules/home/home.module';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
 
-import { AuthGuardService } from './services/auth-guard.service';
-import { ApplicationModule } from './modules/application/application.module';
-import { HoursModule } from './modules/hours/hours.module';
-import { HoursGuardService } from './services/hours-guard.service';
-import { UsersModule } from './modules/users/users.module';
+import {AuthGuardService} from './services/auth-guard.service';
+import {ApplicationModule} from './modules/application/application.module';
+import {HoursModule} from './modules/hours/hours.module';
+import {HoursGuardService} from './services/hours-guard.service';
+import {UsersModule} from './modules/users/users.module';
+import {ProfileComponent} from "./modules/profile/profile.component";
+import {CourseReviewComponent} from "./modules/course-review/course-review.component";
 
 
 export const AppRoutes: Routes = [
