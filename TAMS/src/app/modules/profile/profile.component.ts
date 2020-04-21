@@ -32,19 +32,18 @@ export class ProfileComponent implements OnInit {
   followedUser: User;
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (params.profileId != null) {
+    this.route.queryParams.subscribe((params) => {
+      if (params.id) {
+        console.log("id", params.id);
+        this.userId = params.id;
+      } else {
+        this.userId = JSON.parse(this.userService.getUserData())._id;
       }
+      this.userService.findUserById(this.userId).subscribe((user) => {
+        this.allDataForCurrentUser = user;
+      });
+      this.currentUser = JSON.parse(this.userService.getUserData());
     });
-    this.userId = JSON.parse(this.userService.getUserData())._id;
-    this.profileService.getUserById(this.userId).then((user) => {
-      this.loggedInUser = user;
-    });
-    this.userService.findUserById(this.userId).subscribe((user) => {
-      this.allDataForCurrentUser = user;
-    });
-
-    this.currentUser = JSON.parse(this.userService.getUserData());
   }
 
   clicked() {
@@ -119,5 +118,9 @@ export class ProfileComponent implements OnInit {
           });
         }
       });
+  }
+
+  viewUser(eventArgs: any) {
+    this.router.navigate(["/account/profile"], {queryParams: {id: eventArgs.id}});
   }
 }

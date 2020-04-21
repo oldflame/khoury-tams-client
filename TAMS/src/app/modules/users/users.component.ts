@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
   tabChanged(eventArgs: MatTabChangeEvent) {
     console.log(eventArgs);
     this.users$.subscribe((users) => {
-      if (users) {
+      if (users && users.length > 0) {
         this.students = [];
         this.faculty = [];
         users.forEach((user) => {
@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
     this.userService.getAllUsers().subscribe();
     this.users$.subscribe((users) => {
       console.log("Users", users);
-      if (users) {
+      if (users && users.length > 0) {
         this.students = [];
         users.forEach((user) => {
           const userType = user.role;

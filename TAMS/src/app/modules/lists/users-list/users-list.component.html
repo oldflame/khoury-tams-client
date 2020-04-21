@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let user of usersList; index as $index">
+  <mat-list-item *ngFor="let user of usersList; index as $index" (click)="viewUserClicked(user._id)">
     <mat-icon mat-list-icon>person</mat-icon>
     <div mat-line>{{user.firstName}} {{user.lastName}}</div>
     <div mat-line> {{user.email}} </div>

@@ -1,4 +1,3 @@
-import { ProfessorRetrieveApplicationsComponent } from './modules/application/professor-retrieve-applications/professor-retrieve-applications.component';
 import { AuthLayoutComponent } from "./layout/auth-layout/auth-layout.component";
 import { Routes } from "@angular/router";
 import { AuthModule } from "./modules/auth/auth.module";
@@ -17,7 +16,7 @@ import { FeedModule } from './modules/feed/feed.module';
 export const AppRoutes: Routes = [
   {
     path: "",
-    redirectTo: "login",
+    redirectTo: "account/home",
     pathMatch: "full",
   },
   {

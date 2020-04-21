@@ -25,7 +25,9 @@ import { UserService } from "src/app/services/user.service";
 export class UsersListComponent implements OnInit, OnChanges {
   @Input("usersList") usersList: User[];
   @Output("followUser") followUser = new EventEmitter();
+
   @Output("unFollowUser") unFollowUser = new EventEmitter();
+  @Output("viewUser") viewUser = new EventEmitter();
 
   currentUser: User;
 
@@ -46,5 +48,9 @@ export class UsersListComponent implements OnInit, OnChanges {
   }
   unFollowUserClicked(user: User) {
     this.unFollowUser.emit({ user });
+  }
+
+  viewUserClicked(id: string) {
+    this.viewUser.emit({id});
   }
 }
