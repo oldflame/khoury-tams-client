@@ -28,6 +28,10 @@ export class MainNavbarComponent implements OnInit {
       viewValue: "Applications",
       route: "/account/applications",
     },
+    {
+      viewValue: "Users",
+      route: "/account/follow-users",
+    }
   ];
 
   ngOnInit(): void {
@@ -39,16 +43,13 @@ export class MainNavbarComponent implements OnInit {
     });
 
     this.activeLink = this.router.url;
-    console.log("Before if", this.links, this.currentUser.role);
 
     if (this.currentUser.role == "Student") {
-      console.log("Inside If", this.links);
       this.links.splice(1, 0, {
         viewValue: "Hours",
         route: "/account/fill",
       });
     }
-    console.log(this.links);
   }
 
   signOut() {

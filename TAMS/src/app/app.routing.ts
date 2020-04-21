@@ -7,6 +7,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ApplicationModule } from './modules/application/application.module';
 import { HoursModule } from './modules/hours/hours.module';
 import { HoursGuardService } from './services/hours-guard.service';
+import { UsersModule } from './modules/users/users.module';
 
 export const AppRoutes: Routes = [
   {
@@ -31,6 +32,11 @@ export const AppRoutes: Routes = [
       {
         path: "applications",
         loadChildren: () => ApplicationModule,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "follow-users",
+        loadChildren: () => UsersModule,
         canActivate: [AuthGuardService]
       }
     ]

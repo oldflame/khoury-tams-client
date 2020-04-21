@@ -23,6 +23,9 @@ export class UserService {
   private userSubject = new BehaviorSubject(null);
   user$: Observable<User> = this.userSubject.asObservable();
 
+  private usersSubject = new BehaviorSubject(null);
+  users$: Observable<User[]> = this.userSubject.asObservable();
+
   registerUser(user: User) {
     return this.dataService.sendPOST(`/register`, user).pipe(
       map((res: HttpResponse<any>) => {
@@ -46,6 +49,23 @@ export class UserService {
           this.userSubject.next(res.body);
           this.secureStorageService.setValue("user", JSON.stringify(res.body));
           this.secureStorageService.setValue("token", res.body.authToken);
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError((err: HttpErrorResponse) => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  getAllUsers(): Observable<boolean> {
+    return this.dataService.sendGET(`/users`).pipe(
+      map((res: HttpResponse<object>) => {
+        if (res.status === 200) {
+          this.userSubject.next(res.body);
           return true;
         } else {
           return false;
