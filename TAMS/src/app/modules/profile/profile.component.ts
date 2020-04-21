@@ -14,7 +14,12 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private profileService: ProfileService
-  ) {}
+  ) {
+    this.userId = JSON.parse(this.userService.getUserData())._id;
+    this.profileService.getUserById(this.userId).then((user) => {
+      this.loggedInUser = user[0];
+    });
+  }
 
   loggedInUser: any = {
     firstName: "",
@@ -34,15 +39,11 @@ export class ProfileComponent implements OnInit {
         this.editing = false;
       }
     });
-    this.userId = JSON.parse(this.userService.getUserData())._id;
-    this.profileService.getUserById(this.userId).then((user) => {
-      this.loggedInUser = user[0];
-    });
   }
 
   clicked() {
     if (!this.editing) {
-      this.router.navigate([`/profile/${this.loggedInUser._id}`]);
+      this.router.navigate([`account/profile/${this.loggedInUser._id}`]);
     } else {
       fetch(`http://localhost:7000/profile/${this.loggedInUser._id}`, {
         method: "PUT",
@@ -58,7 +59,7 @@ export class ProfileComponent implements OnInit {
           this.loggedInUser = updatedUser;
           console.log(this.loggedInUser);
         });
-      this.router.navigate(["/profile"]);
+      this.router.navigate(["account/profile"]);
     }
   }
 }
