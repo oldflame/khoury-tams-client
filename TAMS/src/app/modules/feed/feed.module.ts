@@ -5,6 +5,7 @@ import { FeedRoutes } from './feed.routing';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.modules';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild(FeedRoutes),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MomentModule
   ]
 })
 export class FeedModule { }

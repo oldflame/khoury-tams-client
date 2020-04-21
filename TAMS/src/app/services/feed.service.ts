@@ -21,8 +21,9 @@ export class FeedService {
         (res: HttpResponse<any>) => {
           if (res.status == 200) {
             this.feedSubject.next(res.body);
+          } else {
+            this.feedSubject.next([]);
           }
-          this.feedSubject.next([]);
           return res.status == 200;
         },
         catchError((err: HttpErrorResponse) => {

@@ -1,8 +1,7 @@
-{{ feed$ | async | json }}
 <div class="container">
   <form [formGroup]="postForm">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 m-2">
         <div class="card">
           <div class="card-body">
             <h2>Write a Post</h2>
@@ -46,4 +45,19 @@
       </div>
     </div>
   </form>
+  <h2>Your Feed</h2>
+  <div class="col-12 m-2" *ngFor="let post of (feed$ |async)" >
+    <div class="card" [ngClass]="{'bg-info text-white': post.postedBy.role == 'Faculty'}">
+      <div class="card-body">
+        <h1> {{post.title}}</h1>
+        <p> {{post.content}}</p>
+        <mat-chip-list *ngFor="let tag of post.tags">
+          <mat-chip>{{tag}}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="card-footer">
+        <p>Posted By {{ post.postedBy.firstName | titlecase }}, {{ post.timestamp | amTimeAgo }}</p>
+      </div>
+    </div>
+  </div>
 </div>

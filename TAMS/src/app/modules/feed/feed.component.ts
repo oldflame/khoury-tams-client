@@ -33,7 +33,9 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(this.userService.getUserData());
     this.feed$ = this.feedService.feed$;
-    this.feedService.getFeed(this.currentUser._id).subscribe();
+    this.feedService.getFeed(this.currentUser._id).subscribe((res: boolean) => {
+      console.log("Feed aavyu ?", res, this.feed$);
+    });
   }
 
 
