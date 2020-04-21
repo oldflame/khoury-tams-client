@@ -22,6 +22,7 @@ export class TaApplyPositionComponent implements OnInit {
     lookingForCoop: new FormControl("", [Validators.required]),
     notes: new FormControl(""),
     courseNumber: new FormControl("", [Validators.required]),
+    status: new FormControl("")
   });
 
   constructor(
@@ -36,6 +37,7 @@ export class TaApplyPositionComponent implements OnInit {
   lookingForCoop: false;
   coursesTitleArray: string[];
   applicationForms: FormGroup[] = [];
+  status: string;
 
   ngOnInit() {
     this.courses$ = this.courseService.courses$;
@@ -67,6 +69,9 @@ export class TaApplyPositionComponent implements OnInit {
     ).lastName;
     applicationData.email = JSON.parse(this.userService.getUserData()).email;
     applicationData.studentId = JSON.parse(this.userService.getUserData())._id;
+
+    applicationData.status = "Applied";
+
     applicationData = _.omit(applicationData, '_id');
     console.log(applicationData);
     this.applicationService.sendApplication(applicationData).subscribe();
@@ -92,6 +97,7 @@ export class TaApplyPositionComponent implements OnInit {
       courseNumber: new FormControl(application?.courseNumber || "", [
         Validators.required,
       ]),
+      status: new FormControl("")
     });
   }
 

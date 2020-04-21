@@ -23,6 +23,10 @@ export class MainNavbarComponent implements OnInit {
       viewValue: "Applications",
       route: "/account/applications",
     },
+    {
+      viewValue: "TA Applications",
+      route: "/account/ta-applications/view"
+    }
   ];
 
   ngOnInit(): void {

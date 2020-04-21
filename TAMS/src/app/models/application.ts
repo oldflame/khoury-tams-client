@@ -11,4 +11,5 @@ export interface Application {
   courseNumber: string;
   profTakingCourse: string;
   currentGpa: string;
+  status: string;
 }

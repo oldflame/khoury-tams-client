@@ -5,9 +5,10 @@ import { SelectProfessorComponent } from "./select-professor/select-professor.co
 import { MaterialModule } from "src/app/material.modules";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { ProfessorUpdateTaStatusComponent } from './professor-update-ta-status/professor-update-ta-status.component';
 
 @NgModule({
-  declarations: [CourseDetailsComponent, SelectProfessorComponent, AddCourseComponent],
+  declarations: [CourseDetailsComponent, SelectProfessorComponent, AddCourseComponent, ProfessorUpdateTaStatusComponent],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
   exports: [CourseDetailsComponent, SelectProfessorComponent, AddCourseComponent],
   entryComponents: [CourseDetailsComponent, SelectProfessorComponent, AddCourseComponent],
