@@ -21,7 +21,7 @@
       <div class="col-12 col-md-6">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Phone Number</mat-label>
-          <input matInput placeholder="Phone Number" name="phoneNumber" type="password"[disabled]="editing ? false : true"
+          <input matInput placeholder="Phone Number" name="phoneNumber" type="number"[disabled]="editing ? false : true"
             [(ngModel)]=allDataForCurrentUser.phoneNumber>
         </mat-form-field>
       </div>
@@ -70,4 +70,5 @@
       </mat-tab-group>
     </div>
   </div>
+  <p routerLink="/privacy"> Privacy Policy </p>
 </div>
