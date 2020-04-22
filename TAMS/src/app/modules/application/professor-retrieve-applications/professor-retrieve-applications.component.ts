@@ -80,6 +80,7 @@ export class ProfessorRetrieveApplicationsComponent implements OnInit {
             }
           }
         }
+        this.applicationsForCourses = _.uniqBy(this.applicationsForCourses, '_id');
         console.log("apps", this.applicationsForCourses);
         this.dataSource = new MatTableDataSource(this.applicationsForCourses);
       });

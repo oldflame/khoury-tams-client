@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 import { AuthRoutes } from './auth.routing';
 import { MaterialModule } from 'src/app/material.modules';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, PrivacyComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AuthRoutes),
