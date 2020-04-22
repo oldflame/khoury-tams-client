@@ -50,6 +50,11 @@ export const AppRoutes: Routes = [
         canActivate: [AuthGuardService]
       },
       {
+        path: "ta-acceptance",
+        loadChildren: () => ApplicationModule,
+        canActivate: [AuthGuardService] 
+      },
+      {
         path: "follow-users",
         loadChildren: () => UsersModule,
         canActivate: [AuthGuardService],

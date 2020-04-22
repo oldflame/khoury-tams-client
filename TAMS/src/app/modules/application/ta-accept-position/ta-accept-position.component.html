@@ -1,1 +1,98 @@
-<p>ta-accept-position works!</p>
+<div class="position-relative">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+        <h3 class="text-center">Accept TA Position</h3>
+        <br/>
+        <div *ngIf ="acceptedSubject !==''">
+        <h5 class="text-center">Congratulations! You have Accepted the TA position for the course: {{acceptedSubject}}!</h5>
+        <p class="text-center">You are entitled to work upto 15 hours per week.</p>
+        </div>
+        <table mat-table [dataSource]="dataSource">
+    
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="studentId">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.studentId}} </td>
+              </ng-container>
+    
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef> First Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef> Last Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+    
+            <ng-container matColumnDef="level">
+                <th mat-header-cell *matHeaderCellDef> Level </th>
+                <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+              </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="courseNumber">
+              <th mat-header-cell *matHeaderCellDef> Course </th>
+              <td mat-cell *matCellDef="let element"> {{element.courseNumber}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="profTakingCourse">
+                <th mat-header-cell *matHeaderCellDef> Instructor(s) </th>
+                <td mat-cell *matCellDef="let element"> {{element.profTakingCourse}} </td>
+              </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="currentGpa">
+              <th mat-header-cell *matHeaderCellDef> GPA </th>
+              <td mat-cell *matCellDef="let element"> {{element.currentGpa}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="gpaInSubject">
+                <th mat-header-cell *matHeaderCellDef> Course GPA </th>
+                <td mat-cell *matCellDef="let element"> {{element.gpaInSubject}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="lookingForCoop">
+                <th mat-header-cell *matHeaderCellDef> Looking for Coop </th>
+                <td mat-cell *matCellDef="let element"> {{element.lookingForCoop}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="notes">
+                <th mat-header-cell *matHeaderCellDef> Notes </th>
+                <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+    
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-select [(value)]="taStatus">
+                      <mat-option value="Selected">None</mat-option>
+                      <mat-option value="Accept" (click)="acceptOrReject($event,element)">Accept</mat-option>
+                      <mat-option value="Reject" (click)="acceptOrReject($event,element)">Reject</mat-option>
+                    </mat-select>
+                </td>
+              </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          </div>
+          </div>
+    
+    </div>
+    </div>
+    
