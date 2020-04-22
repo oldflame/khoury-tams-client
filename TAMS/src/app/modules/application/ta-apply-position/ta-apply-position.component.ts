@@ -74,7 +74,6 @@ export class TaApplyPositionComponent implements OnInit {
     applicationData.email = JSON.parse(this.userService.getUserData()).email;
     applicationData.studentId = JSON.parse(this.userService.getUserData())._id;
     applicationData.status = "Applied";
-    applicationData = _.omit(applicationData, '_id');
     console.log(applicationData);
     if (applicationData._id) {
       console.log("Updating", applicationData._id);
