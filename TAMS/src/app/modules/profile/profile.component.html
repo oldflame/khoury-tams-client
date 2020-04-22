@@ -43,7 +43,7 @@
       </div>
 
     </div>
-
+    <p routerLink="/privacy"> Privacy Policy </p>
     <div class="row my-3" *ngIf="this.userId == this.currentUser._id">
       <div class="col-12 text-center">
         <button mat-raised-button color="primary" [disabled]="!editing" (click)="clicked()">Update</button>
@@ -70,5 +70,4 @@
       </mat-tab-group>
     </div>
   </div>
-  <p routerLink="/privacy"> Privacy Policy </p>
 </div>

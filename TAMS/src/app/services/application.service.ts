@@ -10,12 +10,14 @@ import * as _ from "lodash";
 export class ApplicationService {
   constructor(private dataService: DataService) {}
   private applicationSubject = new BehaviorSubject(null);
-  applications$: Observable<Application[]> = this.applicationSubject.asObservable();
+  applications$: Observable<
+    Application[]
+  > = this.applicationSubject.asObservable();
 
   getAllApplications = () =>
-    fetch(`https://khoury-tams.herokuapp.com/applications`)
-      .then(response => response.json())
-
+    fetch(`https://khoury-tams.herokuapp.com/applications`).then((response) =>
+      response.json()
+    )
 
   sendApplication(application: any) {
     return this.dataService.sendPOST("/submitApplication", application).pipe(
@@ -36,8 +38,22 @@ export class ApplicationService {
     );
   }
 
+  deleteApplication(applicatonId: string) {
+    return this.dataService
+      .sendDELETE(`/deleteApplication/${applicatonId}`)
+      .pipe(
+        map((res: HttpResponse<any>) => {
+          if (res.status === 200) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
+  }
+
   updateApplicationForStudent(application: any) {
-    return this.dataService.sendPUT("/updateApplication", {application}).pipe(
+    return this.dataService.sendPUT("/updateApplication", { application }).pipe(
       map((res: HttpResponse<any>) => {
         if (res.status === 200) {
           const applications = this.applicationSubject.value;
@@ -61,30 +77,30 @@ export class ApplicationService {
   }
 
   // getApplicationsForStudent(studentId: string) {
-    // return this.dataService.sendGET(`/getSubmittedApplication/${studentId}`).pipe(
-//   updateApplicationForStudent(application: any) {
-//     return this.dataService.sendPUT("/updateApplication", {application}).pipe(
-//       map((res: HttpResponse<any>) => {
-//         if (res.status === 200) {
-//           const applications = this.applicationSubject.value;
-//           const applicationIndexToUpdate = _.findIndex(applications, {
-//             _id: application._id,
-//           });
-//           if (applicationIndexToUpdate != -1) {
-//             applications.splice(applicationIndexToUpdate, 1, application);
-//           }
-//           this.applicationSubject.next(_.cloneDeep(applications));
-//           return true;
-//         } else {
-//           return false;
-//         }
-//       }),
-//       catchError((err: HttpErrorResponse) => {
-//         console.log(err);
-//         return of(false);
-//       })
-//     );
-//   }
+  // return this.dataService.sendGET(`/getSubmittedApplication/${studentId}`).pipe(
+  //   updateApplicationForStudent(application: any) {
+  //     return this.dataService.sendPUT("/updateApplication", {application}).pipe(
+  //       map((res: HttpResponse<any>) => {
+  //         if (res.status === 200) {
+  //           const applications = this.applicationSubject.value;
+  //           const applicationIndexToUpdate = _.findIndex(applications, {
+  //             _id: application._id,
+  //           });
+  //           if (applicationIndexToUpdate != -1) {
+  //             applications.splice(applicationIndexToUpdate, 1, application);
+  //           }
+  //           this.applicationSubject.next(_.cloneDeep(applications));
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       }),
+  //       catchError((err: HttpErrorResponse) => {
+  //         console.log(err);
+  //         return of(false);
+  //       })
+  //     );
+  //   }
 
   // updateApplication(application: Application): Observable<boolean> {
   //   return this.dataService.sendPUT(`/updateApplication`, application).pipe(

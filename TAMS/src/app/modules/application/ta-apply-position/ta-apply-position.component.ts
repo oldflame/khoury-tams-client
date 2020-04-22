@@ -22,7 +22,7 @@ export class TaApplyPositionComponent implements OnInit {
     lookingForCoop: new FormControl("", [Validators.required]),
     notes: new FormControl(""),
     courseNumber: new FormControl("", [Validators.required]),
-    status: new FormControl("")
+    status: new FormControl(""),
   });
 
   constructor(
@@ -106,10 +106,19 @@ export class TaApplyPositionComponent implements OnInit {
       courseNumber: new FormControl(application?.courseNumber || "", [
         Validators.required,
       ]),
-      status: new FormControl("")
+      status: new FormControl(""),
     });
   }
 
+  deleteApplication(indexToDelete) {
+    if (!this.applicationForms[indexToDelete].value._id) {
+      this.applicationForms.splice(indexToDelete, 1);
+    } else {
+      this.applicationService.deleteApplication(
+        this.applicationForms[indexToDelete].value._id
+      ).subscribe();
+    }
+  }
   addNewApplication() {
     this.applicationForms.push(this.getApplicationForm());
   }

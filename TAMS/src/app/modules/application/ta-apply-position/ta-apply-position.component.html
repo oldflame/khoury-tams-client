@@ -4,7 +4,7 @@
     Please fill out (or update) the form below, which will be used in reviewing your application
     for a TA position.
   </div>
-  <form *ngFor="let applicationForm of applicationForms" [formGroup]="applicationForm" class="form">
+  <form *ngFor="let applicationForm of applicationForms; index as $index" [formGroup]="applicationForm" class="form">
     <div class="row">
       <div class="col-12 col-md-6">
         <mat-form-field class="full-width" appearance="outline">
@@ -63,6 +63,7 @@
       <div class="col-12 text-center">
         <button mat-raised-button color="primary" [disabled]="applicationForm.invalid"
           (click)="submitApplication(applicationForm)">{{ applicationForm.value._id ? "Update" : "Submit" }}</button>
+        <button mat-button color="warn" (click)="deleteApplication($index)"> Delete </button>
       </div>
     </div>
   </form>
