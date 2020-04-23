@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostname: "http://localhost",
+  hostname: "https://khoury-tams.herokuapp.com",
   port: 7000
 };
 
