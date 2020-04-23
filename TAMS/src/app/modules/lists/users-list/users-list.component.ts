@@ -53,4 +53,8 @@ export class UsersListComponent implements OnInit, OnChanges {
   viewUserClicked(id: string) {
     this.viewUser.emit({id});
   }
+
+  deleteUser(user: User) {
+    this.userService.deleteUser(user._id).subscribe();
+  }
 }

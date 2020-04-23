@@ -9,6 +9,7 @@ import {User} from "../models/user";
 import {map, catchError} from "rxjs/operators";
 import {of, BehaviorSubject, Observable} from "rxjs";
 import {SecureStorageService} from "./secure-storage.service";
+import * as _ from "lodash";
 
 @Injectable({
   providedIn: "root",
@@ -58,6 +59,22 @@ export class UserService {
       catchError((err: HttpErrorResponse) => {
         console.log(err);
         return of(false);
+      })
+    );
+  }
+
+  deleteUser(userId: string): Observable<boolean> {
+    return this.dataService.sendDELETE(`/deleteUser/${userId}`).pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status === 200) {
+          const users = this.userSubject.value;
+          const userIndexToDelete = _.findIndex(users, { _id: userId });
+          users.splice(userIndexToDelete, 1);
+          this.userSubject.next(_.cloneDeep(users));
+          return true;
+        } else {
+          return false;
+        }
       })
     );
   }

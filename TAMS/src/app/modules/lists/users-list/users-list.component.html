@@ -3,6 +3,7 @@
     <mat-icon mat-list-icon>person</mat-icon>
     <div mat-line>{{user.firstName}} {{user.lastName}}</div>
     <div mat-line> {{user.email}} </div>
+    <button color="warn" *ngIf="currentUser.role=='admin'" class="m-1"mat-stroked-button (click)="deleteUser(user)">Delete</button>
     <button color="primary" *ngIf="currentUser.following?.indexOf(user._id)==-1" mat-stroked-button
       matTooltip="Follow {{ user.firstName}}" matTooltipPosi1tion="below"
       (click)="followUserClicked(user)">Follow</button>
