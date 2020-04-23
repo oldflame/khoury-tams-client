@@ -73,6 +73,11 @@ export class MainNavbarComponent implements OnInit {
         _.findIndex(this.links, { viewValue: "TA Applications" }),
         1
       );
+
+      this.links.splice(
+        _.findIndex(this.links, { viewValue: "Acceptance" }),
+        1
+      );
     }
 
     if (this.currentUser && this.currentUser.role == "Faculty") {
