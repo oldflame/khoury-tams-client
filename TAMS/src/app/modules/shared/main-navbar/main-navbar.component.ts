@@ -36,6 +36,10 @@ export class MainNavbarComponent implements OnInit {
       route: "/account/applications",
     },
     {
+      viewValue: "Acceptance",
+      route: "/account/ta-acceptance/accept",
+    },
+    {
       viewValue: "TA Applications",
       route: "/account/ta-applications/view",
     },
